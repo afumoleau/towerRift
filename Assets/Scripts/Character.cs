@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-public class Displacement : MonoBehaviour
+public class Character : MonoBehaviour
 {
 	[DllImport ("UniWii")]
 	private static extern void wiimote_start();
@@ -31,26 +31,27 @@ public class Displacement : MonoBehaviour
 
 	private float jump = 0f;
 
+	public TowerManager towerManager;
+
 	void Start()
 	{
 		wiimote_start();
 		wiimoteConnected = wiimote_count();
+		for (int i = 0; i < wiimoteConnected; ++i)
+			if (!wiimote_isExpansionPortEnabled(i))
+				Debug.Log("Wiimote #"+i+" has no nunchuk !");
 	}
 	
-	void FixedUpdate()
+	void Update()
 	{
-		if(wiimoteConnected > 0)
-		{	
-			for (int i = 0; i < wiimoteConnected; ++i)
-			{
-				if (wiimote_isExpansionPortEnabled(i))
-					NunchuckMove(i);
-				else
-					Debug.Log("Nunchuck is not connected to your wiimote !");
-			}
-		}
-		else
+		// Move character
+		for (int i = 0; i < wiimoteConnected; ++i)
+			NunchuckMove(i);
+		if(wiimoteConnected <= 0)
 			KeyboardMove();
+
+		if(Input.GetKeyDown(KeyCode.A))
+			towerManager.spawn(transform.position + transform.forward * 2);
 	}
 
 	void NunchuckMove(int wiimoteId)

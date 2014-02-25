@@ -3,16 +3,20 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-	public Transform target;
-	private NavMeshAgent agent;
+	public int hitPoints = 5;
 
 	void Start ()
 	{
-		NavMeshAgent agent = GetComponent<NavMeshAgent>();
-		agent.SetDestination(target.position);
 	}
 	
 	void Update ()
 	{
+	}
+
+	public void hit()
+	{
+		hitPoints--;
+		if(hitPoints <= 0)
+			Destroy(gameObject);
 	}
 }
