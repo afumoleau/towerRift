@@ -37,7 +37,7 @@ public class Displacement : MonoBehaviour
 		wiimoteConnected = wiimote_count();
 	}
 	
-	void LateUpdate()
+	void FixedUpdate()
 	{
 		if(wiimoteConnected > 0)
 		{	
