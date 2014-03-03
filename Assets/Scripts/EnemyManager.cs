@@ -7,7 +7,6 @@ public class EnemyManager : MonoBehaviour
 	public Transform destination;
 	public float spawnDelay;
 	public int leftToSpawn;
-
 	public Transform spawn;
 
 	private float clock = 0f;
@@ -19,15 +18,15 @@ public class EnemyManager : MonoBehaviour
 	void Update ()
 	{
 		clock += Time.deltaTime;
-		if(clock > spawnDelay && leftToSpawn > 0)
-		{
-			Transform newSpawn = Instantiate(spawn) as Transform;
+		if (clock > spawnDelay && leftToSpawn > 0) {
+			Transform newSpawn = Instantiate (spawn) as Transform;
 			newSpawn.parent = transform;
 			newSpawn.position = source.position;
-			newSpawn.GetComponent<NavMeshAgent>().SetDestination(destination.position);
+			newSpawn.GetComponent<NavMeshAgent> ().SetDestination (destination.position);
 
 			leftToSpawn--;
 			clock = 0;
 		}
+
 	}
 }

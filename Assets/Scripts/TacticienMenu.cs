@@ -3,9 +3,10 @@ using System.Collections;
 
 public class TacticienMenu : MonoBehaviour {
 
+	public bool stop;
+
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -42,7 +43,10 @@ public class TacticienMenu : MonoBehaviour {
 		GUI.Box (new Rect ((menuSizeX / 4 * 3) - 10, 0, menuSizeX / 4 - 10, menuSizeY / 4 * 3 - 20), "Menu");
 
 		if (GUI.Button (new Rect (menuSizeX / 4 * 3, 30, sizeButtonX, sizeButtonY), "Pause / Reprendre")) {
-
+			/*if (stop == false)
+				stop = true;
+			else
+				stop = false;*/
 		}
 		if (GUI.Button (new Rect (menuSizeX / 4 * 3, 70, sizeButtonX, sizeButtonY), "Quitter")) {
 			
