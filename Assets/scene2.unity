@@ -3205,7 +3205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &563737245
 Transform:
   m_ObjectHideFlags: 0
@@ -3303,9 +3303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wiimoteConnected: 0
-  forwardSpeed: 100
-  turnSpeed: .0500000007
-  jumpForce: 350
+  forwardSpeed: 10
+  turnSpeed: 2
+  jumpForce: 30
   towerManager: {fileID: 0}
 --- !u!1 &566930684
 GameObject:
@@ -10702,7 +10702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1496657868
 AudioListener:
   m_ObjectHideFlags: 0
