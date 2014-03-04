@@ -11,7 +11,10 @@ public class TacticienMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(stop)
+			Time.timeScale = 0;
+		else
+			Time.timeScale = 1;
 	}
 
 	void OnGUI () {
@@ -43,13 +46,16 @@ public class TacticienMenu : MonoBehaviour {
 		GUI.Box (new Rect ((menuSizeX / 4 * 3) - 20, 0, menuSizeX / 4, menuSizeY / 4 * 3 - 20), "Menu");
 
 		if (GUI.Button (new Rect (menuSizeX / 4 * 3 - 10, 30, sizeButtonX, sizeButtonY), "Pause / Reprendre")) {
-			/*if (stop == false)
+			if (stop == false)
 				stop = true;
 			else
-				stop = false;*/
+				stop = false;
 		}
-		if (GUI.Button (new Rect (menuSizeX / 4 * 3 - 10, 70, sizeButtonX, sizeButtonY), "Quitter")) {
-			
+		if (GUI.Button (new Rect (menuSizeX / 4 * 3 - 10, 70, sizeButtonX, sizeButtonY), "Recommencer")) {
+			Application.LoadLevel("scene2");
+		}
+		if (GUI.Button (new Rect (menuSizeX / 4 * 3 - 10, 110, sizeButtonX, sizeButtonY), "Quitter")) {
+			Application.Quit();
 		}
 		GUI.EndGroup ();
 	}
