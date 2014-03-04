@@ -3205,7 +3205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &563737245
 Transform:
   m_ObjectHideFlags: 0
@@ -3425,8 +3425,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9588da771c6464e8f4c5550b56997d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 1693484396}
-  destination: {fileID: 1505454494}
+  source1: {fileID: 1693484396}
+  source2: {fileID: 970976617}
+  source3: {fileID: 852665761}
+  source4: {fileID: 1613635236}
+  destination: {fileID: 681584451}
   spawnDelay: 2
   leftToSpawn: 10
   spawn: {fileID: 400000, guid: 1feebe2e137ca834c9f65bd35ad9f88b, type: 2}
@@ -10744,7 +10747,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 50
+  orthographic size: 60
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -10760,7 +10763,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1496657867}
   m_LocalRotation: {x: .707106769, y: 0, z: 0, w: .707106888}
-  m_LocalPosition: {x: 23.9230194, y: 87.0776749, z: -2.02696443}
+  m_LocalPosition: {x: 23.9230194, y: 25, z: -2.02696443}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12140,44 +12143,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 566930685}
---- !u!1 &1693943405
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1693943407}
-  - 114: {fileID: 1693943406}
-  m_Layer: 0
-  m_Name: MainMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1693943406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1693943405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b4e158028d4852499bb6d3e17a1daee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1693943407
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1693943405}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.9035645, y: -7.4499588, z: 2.42153478}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &1705401631
 GameObject:
   m_ObjectHideFlags: 0
