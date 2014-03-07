@@ -71,14 +71,14 @@ public class Character : MonoBehaviour
 		CharacterController controller = GetComponent<CharacterController>();
 		Vector3 moveVector = Vector3.zero;
 
-		if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
+		if (Input.GetKey(KeyCode.Q))
         	transform.Rotate(-Vector3.up * turnSpeed);
-		else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+		else if (Input.GetKey(KeyCode.D))
         	transform.Rotate(Vector3.up * turnSpeed);
 
-		if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow))
+		if (Input.GetKey(KeyCode.Z))
 			moveVector = transform.forward * forwardSpeed;
-		else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+		else if (Input.GetKey(KeyCode.S))
 			moveVector = -transform.forward * forwardSpeed;
 	
 		if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
