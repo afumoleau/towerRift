@@ -7,9 +7,15 @@ public class OculusPlayer : MonoBehaviour
 	public Transform cursor;
 	public Transform mapCursor;
 	public PinManager pinManager;
+	public GameObject menuInGame;
+	//public AnimationClip menuEnter;
+	public AnimationState menuEnter;
+
+	private bool stop = false;
+	private AnimationExtras animationMenuEnter;
 
 	void Start ()
-	{	
+	{
 	}
 
 	void Update ()
@@ -55,5 +61,27 @@ public class OculusPlayer : MonoBehaviour
 	        if (Physics.Raycast(ray, out hit))
 	        	Debug.Log("HIT");
 		}*/
+
+		Action ();
 	}
+
+	void Action ()
+	{		
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			if (stop) {
+				Time.timeScale = 1;
+				menuInGame.SetActive(false);
+				stop = false;
+			}
+			else {
+				Time.timeScale = 0;
+				menuInGame.SetActive(true);
+				stop = true;
+			}
+		}
+	}
+
+	/*void playAnimation() {
+		menuInGame.animation.Play ();
+	}*/
 }
