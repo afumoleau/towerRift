@@ -9,6 +9,7 @@ public class GPSNavigation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		path = new NavMeshPath();
+		LR.enabled = true;
 	}
 	
 	// Update is called once per frame
@@ -23,7 +24,7 @@ public class GPSNavigation : MonoBehaviour {
 				Debug.Log ("PATH NOT FOUND");
 			}
 			hasChanged = false;
-			LR.enabled = false;
+			//LR.enabled = false;
 		}
 	}
 
