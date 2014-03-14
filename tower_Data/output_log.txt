@@ -17,7 +17,7 @@ Platform assembly: C:\Users\romain\Documents\GitHub\towerRift\tower_Data\Managed
 Loading C:\Users\romain\Documents\GitHub\towerRift\tower_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\romain\Documents\GitHub\towerRift\tower_Data\Managed\UniWii.dll (this message is harmless)
 Loading C:\Users\romain\Documents\GitHub\towerRift\tower_Data\Managed\UniWii.dll into Unity Child Domain
-- Completed reload, in  0.062 seconds
+- Completed reload, in  0.068 seconds
 desktop: 1920x1200 59Hz; virtual: 3840x1200 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -55,45 +55,10 @@ ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Script
  
 (Filename: C Line: 0)
 
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
 NullReferenceException: Object reference not set to an instance of an object
   at EnemyHealth.ApplyDamage (Single damage) [0x00029] in C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:28 
 UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
 ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:33)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
  
 (Filename: C Line: 0)
 
@@ -136,118 +101,6 @@ Heho
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at EnemyHealth.ApplyDamage (Single damage) [0x00029] in C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:28 
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:33)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at EnemyHealth.ApplyDamage (Single damage) [0x00029] in C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:28 
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:33)
- 
-(Filename: C Line: 0)
-
-Player found
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-EnemyHealth:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:14)
- 
-(Filename: C Line: 0)
-
-playerBase Found
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-EnemyHealth:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:16)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at EnemyHealth.ApplyDamage (Single damage) [0x00029] in C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:28 
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:33)
- 
-(Filename: C Line: 0)
-
-Heho
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:28)
- 
-(Filename: C Line: 0)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at EnemyHealth.ApplyDamage (Single damage) [0x00029] in C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:28 
-UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
-ShotPlayer:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\ShotPlayer.cs:33)
- 
-(Filename: C Line: 0)
-
-Player found
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-EnemyHealth:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:14)
- 
-(Filename: C Line: 0)
-
-playerBase Found
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-EnemyHealth:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\EnemyHealth.cs:16)
  
 (Filename: C Line: 0)
 
@@ -266,34 +119,6 @@ PutBase:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\P
 (Filename: C Line: 0)
 
 1
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-PutBase:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\PutBase.cs:78)
- 
-(Filename: C Line: 0)
-
-System.Collections.Hashtable
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-PutBase:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\PutBase.cs:80)
- 
-(Filename: C Line: 0)
-
-2
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-PutBase:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\PutBase.cs:78)
- 
-(Filename: C Line: 0)
-
-System.Collections.Hashtable
-UnityEngine.Debug:Internal_Log(Int32, String, Object)
-UnityEngine.Debug:Log(Object)
-PutBase:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\PutBase.cs:80)
- 
-(Filename: C Line: 0)
-
-3
 UnityEngine.Debug:Internal_Log(Int32, String, Object)
 UnityEngine.Debug:Log(Object)
 PutBase:Update() (at C:\Users\romain\Documents\GitHub\towerRift\Assets\Scripts\PutBase.cs:78)
