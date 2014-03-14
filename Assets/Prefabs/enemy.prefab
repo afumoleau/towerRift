@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Enemy
@@ -86,6 +87,18 @@ MonoBehaviour:
   maxHealth: 5
   curHealth: 5
   healthBarLength: 20
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dd78e207a0ccc45bdee517662bfab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barHealth: {fileID: 0}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
