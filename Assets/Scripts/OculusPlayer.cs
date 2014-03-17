@@ -14,6 +14,8 @@ public class OculusPlayer : MonoBehaviour
 	private bool stop = false;
 	private AnimationExtras animationMenuEnter;
 
+	public SkeletonWrapper skeleton;
+
 	void Start ()
 	{
 	}
@@ -39,6 +41,15 @@ public class OculusPlayer : MonoBehaviour
 		Debug.Log(ray);
 		Debug.DrawRay(ray.origin, ray.direction, Color.red, 5f);
 		*/
+
+		float factor = 25;
+		if(skeleton.pollSkeleton())
+		{
+			//TODO Calibration
+			Vector3 pos = skeleton.rawBonePos[0, (int)Kinect.NuiSkeletonPositionIndex.Head];
+			transform.position = new Vector3(pos.x*factor, transform.position.y, -(pos.z-2)*factor);
+		}
+
 
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
