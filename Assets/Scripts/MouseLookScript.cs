@@ -23,7 +23,6 @@ public class MouseLookScript : MonoBehaviour {
 		// Update is called once per frame
 		
 	void FixedUpdate() {
-		Screen.showCursor = false;
 		xRotation -= Input.GetAxis ("Mouse Y") * sensitivity;
 		yRotation += Input.GetAxis ("Mouse X") * sensitivity;
 
