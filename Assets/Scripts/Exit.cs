@@ -15,8 +15,11 @@ public class Exit : MonoBehaviour {
 
 	}
 
-	void OnMouseUp() { 
-		Debug.Log ("Exit !");
+	void OnMouseUp () { 
+		exitGame ();
+	}
+
+	public void exitGame () {
 		audio.PlayOneShot(soundMenu);
 		Application.Quit();
 	}

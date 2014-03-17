@@ -16,7 +16,10 @@ public class Restart : MonoBehaviour {
 	}
 
 	void OnMouseUp() { 
-		Debug.Log ("Restart !");
+		restartGame ();
+	}
+
+	public void restartGame () {
 		audio.PlayOneShot(soundMenu);
 		Application.LoadLevel("scene2");
 		Time.timeScale = 1;

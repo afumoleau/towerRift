@@ -17,7 +17,10 @@ public class Resume : MonoBehaviour {
 	}
 
 	void OnMouseUp() { 
-		Debug.Log ("Resume !");
+		resumeGame ();
+	}
+
+	public void resumeGame () {
 		audio.PlayOneShot(soundMenu);
 		menuInGame.SetActive(false);
 		Time.timeScale = 1;
