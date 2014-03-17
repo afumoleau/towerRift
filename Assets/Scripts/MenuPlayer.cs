@@ -14,7 +14,7 @@ public class MenuPlayer : MonoBehaviour
 	private long tris = 0;
 	private long verts = 0;
 	private float savedTimeScale;
-	private SepiaToneEffect pauseFilter;
+	//private SepiaToneEffect pauseFilter;
 	
 	private bool showfps;
 	private bool showtris;
@@ -54,7 +54,7 @@ public class MenuPlayer : MonoBehaviour
 	void Start() {
 		fpsarray = new float[Screen.width];
 		Time.timeScale = 1;
-		pauseFilter = Camera.main.GetComponent<SepiaToneEffect>();
+		//pauseFilter = Camera.main.GetComponent<SepiaToneEffect>();
 		PauseGame();
 	}
 	
@@ -314,16 +314,16 @@ public class MenuPlayer : MonoBehaviour
 		savedTimeScale = Time.timeScale;
 		Time.timeScale = 0;
 		AudioListener.pause = true;
-		if (pauseFilter) 
-			pauseFilter.enabled = true;
+		//if (pauseFilter) 
+		//	pauseFilter.enabled = true;
 		currentPage = Page.Main;
 	}
 	
 	void UnPauseGame() {
 		Time.timeScale = savedTimeScale;
 		AudioListener.pause = false;
-		if (pauseFilter) 
-			pauseFilter.enabled = false;
+		//if (pauseFilter) 
+		//	pauseFilter.enabled = false;
 		
 		currentPage = Page.None;
 		
