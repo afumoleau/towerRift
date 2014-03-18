@@ -44,6 +44,10 @@ public class PutBase : MonoBehaviour {
 
 	}		
 
+	/* avoid overlaps */
+	void onTriggerEnter(Collision other){
+		Destroy (other.gameObject);
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -83,8 +87,5 @@ public class PutBase : MonoBehaviour {
 			}
 		}
 	}
-
-	void onTriggerEnter(Collision other){
-		Destroy (other.gameObject);
-	}
+	
 }

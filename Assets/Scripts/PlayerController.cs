@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
 	public bool inAir = false;
 	public bool again = false;
 	public float airControl =0.5f;
+	private float horizontal;
+	private float vertical;
 	
 	void onCollisionStay(Collision collisionInfo){
 		contact = collisionInfo.contacts[0];
@@ -35,12 +37,13 @@ public class PlayerController : MonoBehaviour {
 			inAir = true;
 			isGrounded = false;
 			jumpDirection = MoveDirection;
-			rigidbody.AddForce((transform.up)* jumpSpeed);
+			rigidbody.AddForce((transform.up/2f)* jumpSpeed);
 			
 		}
+		/*
 		if (isGrounded) 
 			this.transform.Translate ((MoveDirection.normalized * speedMovement) * Time.deltaTime);
-		
+		*/
 		else if (jumping || inAir) {
 			this.transform.Translate ((jumpDirection * speedMovement * airControl) * Time.deltaTime);
 		}
@@ -49,14 +52,15 @@ public class PlayerController : MonoBehaviour {
 			speedMovement = speedRunVar;
 		}
 		if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			isRunning = false;
-			speedMovementInitialise(5.0f);
+				isRunning = false;
+				speedMovementInitialise (5.0f);
 		}
-		float horizontal = Input.GetAxis ("Horizontal");
-		float vertical = Input.GetAxis ("Vertical");
-		MoveDirection.Set(horizontal, 0.0f, vertical);
-		transform.Translate(MoveDirection.normalized * speedMovement * Time.deltaTime);
-		
+		else {
+				horizontal = Input.GetAxisRaw ("Horizontal");
+				vertical = Input.GetAxisRaw ("Vertical");
+				MoveDirection.Set (horizontal, 0.0f, vertical);
+				transform.Translate (MoveDirection.normalized * speedMovement * Time.deltaTime);
+		}
 	}
 	void speedMovementInitialise(float a){
 		speedMovement = a;

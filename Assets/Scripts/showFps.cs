@@ -11,11 +11,14 @@ public class showFps : MonoBehaviour {
 
 void Start()
 {
-		fpsOn = false;
-		gui.transform.position = Camera.main.ScreenToViewportPoint (new Vector3(15, 15, 0));
+	fpsOn = false;
+	gui.transform.position = Camera.main.ScreenToViewportPoint (new Vector3(15, 15, 0));
+	gui.text = "";
 	lastInterval = Time.realtimeSinceStartup;
 	frames = 0;
 }
+
+
 
 void OnDisable ()
 {
