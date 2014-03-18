@@ -19,9 +19,9 @@ public class PinManager : MonoBehaviour
 		newPin.position = position;
 		newPin.parent = transform;
 
-		GameObject nav = GameObject.Find("Cube");
+		GameObject nav = GameObject.Find("Player");
 		GPSNavigation c = (GPSNavigation)nav.GetComponent("GPSNavigation");
-		c.target = newPin.transform; 
+		c.target = newPin.transform.position; 
 		c.hasChanged = true;
 
 		Destroy(newPin.gameObject, 1);
