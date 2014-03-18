@@ -7,6 +7,7 @@ public class ShotPlayer : MonoBehaviour {
 	public Transform effect;
 	private Vector3 lineTransform ;
 	private Vector3 startLine;
+	public Camera c;
 
 
 	// Update is called once per frame
@@ -21,11 +22,12 @@ public class ShotPlayer : MonoBehaviour {
 		RaycastHit hit;
 		Ray rayPlayer = new Ray (transform.position, Vector3.forward);
 
+		//Ray camera2 = camera.ScreenPointToRay (middleScreen);
 		Ray cam = Camera.main.ScreenPointToRay (middleScreen);
 		if (Input.GetMouseButtonDown(0)) {
 			Debug.Log ("Heho");
 			if (Physics.Raycast (cam, out hit, 1000)) {
-				/* particle will be drawn when hitting an enemy */
+
 				Object particleClone = Instantiate(effect,hit.point,Quaternion.LookRotation(hit.normal));
 				Destroy(((Transform)particleClone).gameObject);
 				hit.transform.SendMessage ("ApplyDamage", damage, SendMessageOptions.DontRequireReceiver);
