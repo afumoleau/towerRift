@@ -32,7 +32,6 @@ public class GPSNavigation : MonoBehaviour {
 			Vector2 pos;
 			pos.x = transform.position.x;
 			pos.y = transform.position.z;
-			Debug.Log (" Pos.x = " + pos.x + " Pos.y = " + pos.y );
 			bool outsideCircle = ((pos.x - center.x)*(pos.x - center.x)) + ((pos.y - center.y)*(pos.y - center.y)) > radius * radius;
 			bool arrived = (((pos.x - target.x)*(pos.x - target.x)) + ((pos.y - target.z)*(pos.y - target.z))) < 25.0f;
 
