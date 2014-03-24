@@ -7,7 +7,8 @@ public class OculusPlayer : MonoBehaviour
 	public Transform cursor;
 
 	public Transform mapCursor;
-	public Camera cursorCamera;
+	public Transform cursorCamera;
+	public Transform cursorPointer;
 
 	public PinManager pinManager;
 	public GameObject menuInGame;
@@ -43,7 +44,10 @@ public class OculusPlayer : MonoBehaviour
 		Debug.DrawRay(ray.origin, ray.direction, Color.red, 5f);
 		*/
 
-		Ray ray = cursorCamera.ScreenPointToRay(Input.mousePosition);
+        Vector3 rayOrigin = cursorCamera.position;
+		Vector3 rayDirection = Vector3.Normalize(cursorPointer.position - rayOrigin);
+
+		Ray ray = new Ray(rayOrigin, rayDirection);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "Grid")
         {
@@ -55,6 +59,7 @@ public class OculusPlayer : MonoBehaviour
         }
         else
             mapCursor.gameObject.SetActive(false);
+
 
 /*		// Cast ray
 		if (Input.GetKey(KeyCode.Space))
