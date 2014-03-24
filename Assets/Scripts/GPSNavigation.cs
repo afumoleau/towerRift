@@ -15,9 +15,9 @@ public class GPSNavigation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		path = new NavMeshPath();
-		LineRenderer LR = gameObject.AddComponent<LineRenderer>();
-		LR.material = mat;
-		LR.SetColors(Color.blue, Color.blue);
+		LineRenderer LR = gameObject.GetComponent<LineRenderer>();
+		/*LR.material = mat;
+		LR.SetColors(Color.blue, Color.blue);*/
 
 		LR.useWorldSpace = true;
 		//LR.enabled = true;

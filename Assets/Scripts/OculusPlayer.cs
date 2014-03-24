@@ -5,7 +5,10 @@ public class OculusPlayer : MonoBehaviour
 {
 	public float speed = 10;
 	public Transform cursor;
+
 	public Transform mapCursor;
+	public Camera cursorCamera;
+
 	public PinManager pinManager;
 	public GameObject menuInGame;
 	//public AnimationClip menuEnter;
@@ -40,7 +43,7 @@ public class OculusPlayer : MonoBehaviour
 		Debug.DrawRay(ray.origin, ray.direction, Color.red, 5f);
 		*/
 
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray ray = cursorCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "Grid")
         {
