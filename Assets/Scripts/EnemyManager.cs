@@ -23,16 +23,19 @@ public class EnemyManager : MonoBehaviour
 	void Update ()
 	{
 		clock += Time.deltaTime;
-		if (clock > spawnDelay) {
-			if (leftToSpawn > 0) {
+		if (clock > spawnDelay)
+		{
+			if (leftToSpawn > 0)
+			{
 				Transform newSpawn = Instantiate (spawn) as Transform;
 				newSpawn.parent = transform;
-				newSpawn.position = source.position;
-				newSpawn.GetComponent<NavMeshAgent> ().SetDestination (destination.position);
+				newSpawn.position = source.position + new Vector3(0f,0.5f,0f);
+				newSpawn.GetComponent<NavMeshAgent> ().SetDestination (new Vector3(destination.position.x, 0.5f, destination.position.z));
 				leftToSpawn--;
 				clock = 0;
 
-				if (leftToSpawn == 0) { // A vérifier avec plusieurs vagues d'ennemies.
+				if (leftToSpawn == 0)
+				{ // A vérifier avec plusieurs vagues d'ennemies.
 					spawnRandom();
 				}
 			}
