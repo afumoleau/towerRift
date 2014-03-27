@@ -11650,13 +11650,14 @@ GameObject:
   - 23: {fileID: 1503407064}
   - 114: {fileID: 1503407063}
   - 143: {fileID: 1503407062}
+  - 114: {fileID: 1503407067}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1503407061
 Transform:
   m_ObjectHideFlags: 0
@@ -11739,6 +11740,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1503407060}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1503407067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1503407060}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d991eacdf4f458418f4310f22a5f64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {x: 0, y: 0, z: 0}
+  hasChanged: 0
+  mat: {fileID: 0}
 --- !u!1 &1505454493
 GameObject:
   m_ObjectHideFlags: 0
@@ -16690,7 +16705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2075305089
 Transform:
   m_ObjectHideFlags: 0
