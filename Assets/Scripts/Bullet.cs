@@ -19,8 +19,13 @@ public class Bullet : MonoBehaviour
 
 		if(clock >= duration)
 		{
-			if(destination != null)
-				destination.GetComponent<Enemy>().hit();
+			if(destination != null){
+
+				if( destination.GetComponent<CrystalHealth>() )
+					destination.GetComponent<CrystalHealth>().ApplyDamage(25f);
+				if( destination.GetComponent<Enemy>() )
+					destination.GetComponent<Enemy>().hit();
+			}
 
 			Destroy(gameObject);
 		}
