@@ -9,7 +9,7 @@ public class EnemyHealth : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (get_Health () <= 0){
+		if (health <= 0){
 			player = GameObject.Find("Player");
 			if( player ) Debug.Log ("Player found");
 			PutBase playerBase = ((PutBase)player.GetComponent ("PutBase"));
