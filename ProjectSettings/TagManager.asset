@@ -7,6 +7,9 @@ TagManager:
   - Grid
   - Enemy
   - CameraPlayer
+  - towerCube
+  - wall
+  - towerBase
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

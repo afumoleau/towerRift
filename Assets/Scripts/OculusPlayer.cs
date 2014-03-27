@@ -18,8 +18,28 @@ public class OculusPlayer : MonoBehaviour
 	private bool stop = false;
 	private AnimationExtras animationMenuEnter;
 
+	public Camera leftCamera;
+	public Camera rightCamera;
+
+	private Transform manipulatedObject;
+
 	void Start ()
 	{
+		switch(PlayerPrefs.GetInt("gameMode"))
+		{
+			case 0 : // Only standard player
+				gameObject.SetActive(false);
+				break;
+			case 1 : // Only Rift player
+				leftCamera.rect = new Rect(0f, 0f, 0.5f, 1f);
+				rightCamera.rect = new Rect(0.5f, 0f, 0.5f, 1f);
+				break;
+			default : // Both players
+				leftCamera.rect = new Rect(0.5f, 0f, 0.25f, 1f);
+				rightCamera.rect = new Rect(0.75f, 0f, 0.25f, 1f);
+				break;
+		}
+		manipulatedObject = null;
 	}
 
 	void Update ()
@@ -37,7 +57,7 @@ public class OculusPlayer : MonoBehaviour
 			moveVector += -transform.forward;
 		controller.Move(moveVector.normalized * speed * Time.deltaTime);
 		
-		cursor.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+		//cursor.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
 		/*
 		Ray ray = new Ray(Camera.main.transform.position, (cursor.position - Camera.main.transform.position).normalized);
 		Debug.Log(ray);
@@ -49,33 +69,43 @@ public class OculusPlayer : MonoBehaviour
 
 		Ray ray = new Ray(rayOrigin, rayDirection);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "Grid")
+        if (Physics.Raycast(ray, out hit))
         {
-            mapCursor.position = hit.point;
-            mapCursor.gameObject.SetActive(true);
-			
-			if(Input.GetMouseButtonDown(1))
-				pinManager.pin(mapCursor.position);
+        	if(hit.collider.gameObject.CompareTag("Grid"))
+        	{
+				pinManager.pin(hit.point);
+        	}
+        	if (hit.collider.gameObject.CompareTag("Grid") || hit.collider.gameObject.CompareTag("wall"))
+        	{
+	        	if(manipulatedObject)
+	        		manipulatedObject.position = hit.point + new Vector3(0f, 2.5f, 0f);
+        	}
+        	if(hit.collider.gameObject.CompareTag("towerBase"))
+        	{
+        		if(manipulatedObject != null)
+        		{
+        			hit.collider.gameObject.GetComponent<TowerBase>().addCube(manipulatedObject);
+        			manipulatedObject.gameObject.tag = "Untagged";
+        			manipulatedObject = null;
+        		}
+        	}
+
+        	if(hit.collider.gameObject.CompareTag("towerCube"))
+        	{
+        		if(manipulatedObject == null)
+        			manipulatedObject = hit.collider.transform;
+        	}
         }
         else
             mapCursor.gameObject.SetActive(false);
 
-
-/*		// Cast ray
-		if (Input.GetKey(KeyCode.Space))
-		{
-			Debug.Log(Camera.main.transform.position);
-			RaycastHit hit;
-	        if (Physics.Raycast(ray, out hit))
-	        	Debug.Log("HIT");
-		}*/
-
-		Action ();
+		//Action ();
 	}
 
 	void Action ()
 	{		
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.Escape))
+		{
 			if (stop) {
 				Time.timeScale = 1;
 				menuInGame.SetActive(false);
