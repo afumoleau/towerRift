@@ -12,8 +12,17 @@ public class ShotPlayer : MonoBehaviour {
 	private Vector3 endPos = Vector3.zero;
 	private const int speed = 5;
 
-	double rate;
+	private float myWidth;
+	private float myHeight;
+	private Vector3 middleScreen;
+
+	private double rate;
+
+
 	void Start() {
+		myWidth = (float)(Screen.width * 0.25);
+		myHeight = (float)(Screen.height * 0.5);
+	 	middleScreen = new Vector3 (myWidth, myHeight, 0f);
 	}
 
 
@@ -22,25 +31,22 @@ public class ShotPlayer : MonoBehaviour {
 
 		lineTransform = transform.position;
 		startLine = transform.position;
-		float myWidth = (float)(Screen.width * 0.25);
-		float myHeight = (float)(Screen.height * 0.5);
-
-		Vector3 middleScreen = new Vector3 (myWidth, myHeight, 0f);
 		RaycastHit hit;
 
-		//Ray camera2 = camera.ScreenPointToRay (middleScreen);
-		Ray cam = Camera.main.ScreenPointToRay (middleScreen);
+		Ray cam = c.ScreenPointToRay (middleScreen);
 		if (Input.GetMouseButtonDown(0)) {
 			Debug.Log ("Heho");
 			if (Physics.Raycast (cam, out hit, 1000)) {
-				Object particleClone = Instantiate(effect,hit.point,Quaternion.LookRotation(hit.normal));
-				Destroy(((Transform)particleClone).gameObject);
-
-				//Send the damage at the method ApplyDamage wich is in enemy Script
-				hit.transform.SendMessage ("ApplyDamage", damage, SendMessageOptions.DontRequireReceiver);
-				lineTransform = hit.point;
-
-				if(hit.transform.tag == "cubeTower"){
+				if(hit.transform.tag == "Enemy"){
+					Debug.Log("CUBE ENEMY TOUCH");
+					Transform particleClone = Instantiate(effect,hit.point,Quaternion.LookRotation(hit.normal)) as Transform;
+					StartCoroutine("impact",particleClone);
+					//Send the damage at the method ApplyDamage within enemy Script
+					hit.transform.GetComponent<EnemyHealth>().applyDamage(25f);
+					lineTransform = hit.point;
+				}
+				if(hit.transform.tag == "towerCube"){
+					Debug.Log ("cubeTower touché");
 					//StartPos, endPos to lerp cubeTower near to the player
 					startPos = hit.transform.position;
 					endPos = transform.position + new Vector3(0.0f,2.0f,2.0f);
@@ -64,4 +70,9 @@ public class ShotPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame();
 		}
 	}
+	IEnumerator impact (Transform thisTransform) {
+		yield return new WaitForSeconds(1.0f);
+		GameObject.Destroy(thisTransform.gameObject);
+	}
+
 }

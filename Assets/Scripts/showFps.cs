@@ -12,7 +12,7 @@ public class showFps : MonoBehaviour {
 void Start()
 {
 	fpsOn = false;
-	gui.transform.position = Camera.main.ScreenToViewportPoint (new Vector3(15, 15, 0));
+	gui.transform.position = camera.ScreenToViewportPoint (new Vector3(15, 15, 0));
 	gui.text = "";
 	lastInterval = Time.realtimeSinceStartup;
 	frames = 0;
@@ -28,7 +28,7 @@ void OnDisable ()
 
 void Update()
 {
-		if (Input.GetKeyDown (KeyCode.F) || fpsOn) {
+		if (Input.GetKeyDown (KeyCode.T) || fpsOn) {
 			fpsOn = true;
 			++frames;
 			var timeNow = Time.realtimeSinceStartup;

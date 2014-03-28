@@ -19,7 +19,7 @@ public class CrystalHealth : MonoBehaviour {
 		}
 	}
 
-	public void ApplyDamage(float damage){
+	public void hit(float damage){
 		crystalHealth -= damage;
 	}
 

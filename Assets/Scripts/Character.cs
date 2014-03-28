@@ -11,7 +11,6 @@ public class Character : MonoBehaviour
 	public GameObject menuInGame;
 	public AnimationClip menuEnter;
 
-	float jump = 0f;
 	bool stop = false;
 	Camera camera;
 

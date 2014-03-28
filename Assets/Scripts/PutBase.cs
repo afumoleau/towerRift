@@ -3,8 +3,10 @@ using System.Collections;
 
 public class PutBase : MonoBehaviour {
 
+	public Transform randomPosition;
+	public Transform towerCubePrefab;
 	public TextMesh playerGold;
-
+	public Camera c;
 	private double money =100;
 	private const int nombreBaseMax = 10;
 	public Transform effect;
@@ -62,29 +64,39 @@ public class PutBase : MonoBehaviour {
 		RaycastHit hit;
 		//Ray rayPlayer = new Ray (transform.position, Vector3.forward);
 
-		Ray cameraShot = Camera.main.ScreenPointToRay (middleScreen);
-		if(Input.GetKeyDown(KeyCode.A)){
-			if (Physics.Raycast (cameraShot, out hit, 100) && (hit.collider.gameObject.tag == "Grid")){
-				Vector3 positionTouched = new Vector3(hit.point.x, hit.point.y - effect.transform.localScale.z/2, hit.point.z);
+		Ray cameraShot = c.ScreenPointToRay (middleScreen);
+		if(Input.GetKeyDown(KeyCode.B)){
+			if (Physics.Raycast (cameraShot, out hit, 100) && (hit.transform.CompareTag("Grid"))){
+				Debug.Log("BASE TOUCH");
+				Vector3 positionTouched = new Vector3(hit.point.x, hit.point.y + effect.transform.localScale.z/2, hit.point.z);
 				if(can_PutTurret()){
 					if(is_full(numberOfBase)){
 						keyCurrent ="base"+ indiceKey%nombreBaseMax;
-						Debug.Log("modulo " + indiceKey%nombreBaseMax);
-						Debug.Log ("trop de bases crées");
 						Destroy(((Transform)numberOfBase[keyCurrent]).gameObject);
 						numberOfBase.Remove(keyCurrent);
-						Debug.Log( is_full(numberOfBase));
 
 					}
 					Object baseClone = Instantiate(effect,positionTouched,Quaternion.LookRotation(hit.normal));
 					numberOfBase.Add("base"+indiceKey%nombreBaseMax, ((Transform)baseClone));
 					setMoney(100);
-					Debug.Log(indiceKey);
 					indiceKey++;
-					Debug.Log(numberOfBase);
 					((Transform)baseClone).renderer.material.color = Color.red;
+
+					//Give the number you want to create number of turret
+					spawnTowerCube(3);
 				}
 			}
+		}
+	}
+
+	public void spawnTowerCube(int numberCubeSpawn)
+	{
+		for (int i = 0; i < numberCubeSpawn; i++) {	
+			Transform newTowerCube = Instantiate (towerCubePrefab) as Transform;
+			newTowerCube.parent = randomPosition.transform;
+			//avoid to be eveywhere out the map
+			int bornMap = 25;
+			newTowerCube.position = new Vector3 (Random.value * 75 - bornMap, 0, Random.value * 75 - bornMap);
 		}
 	}
 

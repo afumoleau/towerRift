@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
 			if(destination != null){
 
 				if( destination.GetComponent<CrystalHealth>() )
-					destination.GetComponent<CrystalHealth>().ApplyDamage(25f);
+					destination.GetComponent<CrystalHealth>().hit(5f);
 				if( destination.GetComponent<Enemy>() )
 					destination.GetComponent<Enemy>().hit();
 			}

@@ -15,10 +15,9 @@ public class TowerBase : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	
 	}
 
-	void OnTriggerEnter(Collider collider)
+	void OnTriggerEnter(Collision collider)
 	{
 		if(collider.gameObject.CompareTag("towerCube"))
 		{
