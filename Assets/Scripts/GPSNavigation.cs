@@ -5,6 +5,8 @@ public class GPSNavigation : MonoBehaviour {
 	public Vector3 target;
 	public bool hasChanged;
 	public Material mat;
+	public float startWidth;
+	public float endWidth;
 
 	private NavMeshPath path;
 	private Vector2 center;
@@ -15,12 +17,13 @@ public class GPSNavigation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		path = new NavMeshPath();
-		LineRenderer LR = gameObject.GetComponent<LineRenderer>();
-		/*LR.material = mat;
-		LR.SetColors(Color.blue, Color.blue);*/
+		LineRenderer LR = gameObject.AddComponent<LineRenderer>();
+
+		LR.material = mat;
+		LR.SetColors(Color.blue, Color.blue );
 
 		LR.useWorldSpace = true;
-		//LR.enabled = true;
+		LR.enabled = true;
 
 		center.x = transform.position.x;
 		center.y = transform.position.z;
@@ -72,12 +75,12 @@ public class GPSNavigation : MonoBehaviour {
 	void DrawPath( Vector3 playerPosition, Vector3[] pointList ){
 		LineRenderer LR = GetComponent<LineRenderer>();
 		LR.enabled = true;
-		LR.SetWidth(0.2f, 0.2f);
+		LR.SetWidth(startWidth, endWidth);
 		LR.SetVertexCount(pointList.Length);
 
 		for( int i = 0; i < pointList.Length; ++i ){
 			Vector3 pointInPath = pointList[i];
-			LR.SetPosition(i, new Vector3(pointInPath.x, -2.8f, pointInPath.z));
+			LR.SetPosition(i, new Vector3(pointInPath.x, pointInPath.y, pointInPath.z));
 		}
 	}
 }

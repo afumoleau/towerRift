@@ -39,7 +39,7 @@ public class CrystalHealth : MonoBehaviour {
 			GUI.Box (new Rect (10,10, Screen.width / 2 - 20,Screen.height - 20), "Game Over !");
 			
 			if (GUI.Button (new Rect (30,50,Screen.width / 2 - 60,60), "Restart game")) {
-				Application.LoadLevel("scene2");
+				Application.LoadLevel("StartMenu");
 				Time.timeScale = 1.0f;
 				GameObject.Destroy( gameObject );
 			}
