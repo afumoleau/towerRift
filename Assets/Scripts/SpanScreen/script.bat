@@ -1,0 +1,1 @@
+START C:\Users\Alexis\Desktop\MAX.au3
