@@ -2,21 +2,28 @@
 using System.Collections;
 
 public class buildTower : MonoBehaviour {
-	private Transform[] tabTurret;
+
+	/*Public variables for turret building. Create a turret with cubeBuild*/
+	public Transform turret;
 	public Transform cubeBuild;
+
+
+	private Transform[] tabTurret;
 	private int caseSwitch;
 	private float widthCube;
-	public Transform turret;
 	private Vector3 positionCube= Vector3.zero;
 	private float scaleBase;
 	private Vector3 positionBase = Vector3.zero;
 
 	void Start(){
-		scaleBase = this.transform.localScale.z*2;
-		Debug.Log (scaleBase);
+		scaleBase = this.transform.localScale.z;
 		caseSwitch = 0;
+
+		/*Contains cubeBuild for our future turret, if tabTurret is full, it creates a turret*/
 		tabTurret = new Transform[3];
-		positionCube = new Vector3(this.transform.position.x,this.transform.position.y + (-scaleBase),this.transform.position.z); 
+
+		/*Positionnement des elements sur la map*/
+		positionCube = new Vector3(this.transform.position.x,this.transform.position.y + scaleBase,this.transform.position.z); 
 		positionBase = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
 	}
 	
@@ -33,7 +40,6 @@ public class buildTower : MonoBehaviour {
 	
 	void Update(){
 		if(isFull(tabTurret,3)) {
-			Debug.Log("Je suis full");
 			GameObject.Destroy (this.gameObject);
 			Transform turretBuild = Instantiate (turret) as Transform;
 			turretBuild.position = positionBase + new Vector3 (0, turret.transform.localScale.y, 0);
@@ -43,11 +49,10 @@ public class buildTower : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("towerCube"))
+		if (other.gameObject.tag == "towerCube")
 		{
 			other.transform.parent = null;
 			Destroy (other.gameObject);
-			Debug.Log (caseSwitch);
 			tabTurret [caseSwitch] = Instantiate (cubeBuild) as Transform;
 			widthCube = cubeBuild.transform.localScale.y;
 		}

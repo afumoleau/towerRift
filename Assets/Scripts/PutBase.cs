@@ -7,12 +7,15 @@ public class PutBase : MonoBehaviour {
 	public Transform towerCubePrefab;
 	public TextMesh playerGold;
 	public Camera c;
+
+
 	private double money =100;
 	private const int nombreBaseMax = 10;
 	public Transform effect;
 	private Hashtable numberOfBase= new Hashtable(nombreBaseMax);
 	private int indiceKey=0;
-	string keyCurrent;
+	private string keyCurrent;
+	
 
 	bool is_full(Hashtable a){
 		return a.Count == nombreBaseMax;
@@ -41,9 +44,6 @@ public class PutBase : MonoBehaviour {
 
 	void Start(){
 		setTextGold ();
-		//playerGold.transform.position.x = Screen.width/2;
-		//playerGold.transform.position.y = Screen.height - 10f;
-
 	}		
 
 	/* avoid overlaps */
@@ -77,26 +77,38 @@ public class PutBase : MonoBehaviour {
 
 					}
 					Object baseClone = Instantiate(effect,positionTouched,Quaternion.LookRotation(hit.normal));
+
+					/*Add BaseCube into numberOfBase HashTable*/
 					numberOfBase.Add("base"+indiceKey%nombreBaseMax, ((Transform)baseClone));
-					setMoney(100);
+
+					/*Give 100 money to the player*/
+					int moneyForPlayer = 100;
+					setMoney(moneyForPlayer);
+
 					indiceKey++;
 					((Transform)baseClone).renderer.material.color = Color.red;
 
-					//Give the number you want to create number of turret
+					/*Give the number you want to create number of cubeTurret*/
 					spawnTowerCube(3);
 				}
 			}
 		}
 	}
 
+
+
 	public void spawnTowerCube(int numberCubeSpawn)
 	{
 		for (int i = 0; i < numberCubeSpawn; i++) {	
 			Transform newTowerCube = Instantiate (towerCubePrefab) as Transform;
 			newTowerCube.parent = randomPosition.transform;
-			//avoid to be eveywhere out the map
+
+			/*avoid to be eveywhere out the map*/
 			int bornMap = 25;
-			newTowerCube.position = new Vector3 (Random.value * 75 - bornMap, 0, Random.value * 75 - bornMap);
+			int scaleYMap = 2;
+
+			/*Scale on the y axis of the map */
+			newTowerCube.position = new Vector3 (Random.value * 75 - bornMap, scaleYMap, Random.value * 75 - bornMap);
 		}
 	}
 
