@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadTime: .5
-  range: 7.5
+  range: 10
   bulletPrefab: {fileID: 400000, guid: 1581978d973ee504a9a30ee2d51c95c0, type: 2}
 --- !u!136 &13600000
 CapsuleCollider:

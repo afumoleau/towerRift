@@ -44,11 +44,6 @@ public class PutBase : MonoBehaviour {
 
 	void Start(){
 		setTextGold ();
-	}		
-
-	/* avoid overlaps */
-	void onTriggerEnter(Collision other){
-		Destroy (other.gameObject);
 	}
 
 	// Update is called once per frame

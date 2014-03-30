@@ -7,30 +7,29 @@ public class TowerBase : MonoBehaviour
 	public int cubesNeeded = 3;
 	public Transform evolveInto;
 
-	// Use this for initialization
+	public Color[] cubeColors = new Color[3]{Color.yellow, Color.green, Color.cyan};
+
 	void Start ()
 	{
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
 	}
 
-	void OnTriggerEnter(Collision collider)
+	void OnTriggerEnter(Collider collider)
 	{
 		if(collider.gameObject.CompareTag("towerCube"))
-		{
-			Destroy(collider.gameObject);
-			collider.transform.parent = transform;
-			cubesCount++;
-		}
+			addCube(collider.transform);
 	}
 
 	public void addCube(Transform towerCube)
 	{
 		towerCube.parent = transform;
-		towerCube.localPosition = new Vector3(0,0,0) + new Vector3(0f, 0f, -5f * cubesCount);
+		towerCube.localPosition = new Vector3(0,0,0) + new Vector3(0f, 0f, -5f * cubesCount); //FIXME
+		towerCube.renderer.material.color = cubeColors[cubesCount%cubeColors.Length];
+		towerCube.gameObject.tag = "Untagged";
+
 		cubesCount++;
 		if(cubesCount == cubesNeeded)
 		{

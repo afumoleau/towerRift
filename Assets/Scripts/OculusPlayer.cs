@@ -20,6 +20,8 @@ public class OculusPlayer : MonoBehaviour
 
 	public Camera leftCamera;
 	public Camera rightCamera;
+	public Collider ground;
+	public Transform towerManager;
 
 	private Transform manipulatedObject;
 
@@ -64,40 +66,34 @@ public class OculusPlayer : MonoBehaviour
 		Debug.DrawRay(ray.origin, ray.direction, Color.red, 5f);
 		*/
 
-        Vector3 rayOrigin = cursorCamera.position;
+		Vector3 rayOrigin = cursorCamera.position;
 		Vector3 rayDirection = Vector3.Normalize(cursorPointer.position - rayOrigin);
 
 		Ray ray = new Ray(rayOrigin, rayDirection);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-        	if(hit.collider.gameObject.CompareTag("Grid"))
-        	{
-				pinManager.pin(hit.point);
-        	}
-        	if (hit.collider.gameObject.CompareTag("Grid") || hit.collider.gameObject.CompareTag("wall"))
-        	{
-	        	if(manipulatedObject)
-	        		manipulatedObject.position = hit.point + new Vector3(0f, 2.5f, 0f);
-        	}
-        	if(hit.collider.gameObject.CompareTag("towerBase"))
-        	{
-        		if(manipulatedObject != null)
-        		{
-        			hit.collider.gameObject.GetComponent<TowerBase>().addCube(manipulatedObject);
-        			manipulatedObject.gameObject.tag = "Untagged";
-        			manipulatedObject = null;
-        		}
-        	}
-
-        	if(hit.collider.gameObject.CompareTag("towerCube"))
-        	{
-        		if(manipulatedObject == null)
-        			manipulatedObject = hit.collider.transform;
-        	}
-        }
-        else
-            mapCursor.gameObject.SetActive(false);
+		RaycastHit hit;
+		if (Physics.Raycast(ray, out hit))
+		{
+			if(hit.collider.gameObject.CompareTag("Grid"))
+			{
+				//pinManager.pin(hit.point);
+			}
+			if(hit.collider.gameObject.CompareTag("towerCube"))
+			{
+				if(manipulatedObject == null)
+					manipulatedObject = hit.collider.transform;
+			}
+		}
+		
+		if(manipulatedObject != null)
+		{
+			if(manipulatedObject.parent != towerManager)
+				manipulatedObject = null;
+			else
+			{
+				if(ground.Raycast(ray, out hit, 1000))
+					manipulatedObject.position = hit.point + new Vector3(0f, 2.5f, 0f);
+			}
+		}
 
 		//Action ();
 	}

@@ -49,6 +49,7 @@ public class buildTower : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
+		Debug.Log("test");
 		if (other.gameObject.tag == "towerCube")
 		{
 			other.transform.parent = null;
