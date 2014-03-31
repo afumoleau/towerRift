@@ -6,14 +6,20 @@ public class Enemy : MonoBehaviour
 	private float clock = 0f;
 	public const float reloadTime = 0.5f;
 	public const float range = 10f;
-
 	public int hitPoints = 5;
 	public int maxHealth = 5;
 	public int curHealth = 5;
-	
 	public float healthBarLength;
-	private CrystalHealth crystal;
 	public Transform bulletPrefab;
+
+	private CrystalHealth crystal;
+	private int currentWayPoint;
+	private int tmpDestinationWayPoint;
+	private int destinationWayPoint;
+	private int[] way;
+	private bool changeWay = false;
+	private int index = 0;
+
 
 	void Start ()
 	{
@@ -29,7 +35,6 @@ public class Enemy : MonoBehaviour
 			{
 				NavMeshAgent nma = GetComponent<NavMeshAgent>();
 				nma.enabled = false;
-				Debug.Log ("ENEMY IN CRYSTAL RANGE !!!!!!");
 				Transform newBullet = Instantiate(bulletPrefab) as Transform;
 				newBullet.parent = transform.parent;
 				newBullet.position = transform.position;
@@ -39,7 +44,29 @@ public class Enemy : MonoBehaviour
 			}
 
 		}
+
+		if (changeWay == true) {
+			currentWayPoint = way[index];
+			destinationWayPoint = way[index + 1];
+			index += 1;
+			
+			this.GetComponent<NavMeshAgent> ().SetDestination (EnemyManager.getWayTransform (destinationWayPoint).position);
+			changeWay = false;
+		} else if (Mathf.Abs (this.GetComponent<NavMeshAgent> ().nextPosition.x - (EnemyManager.getWayTransform (destinationWayPoint)).position.x) < 1 
+		           && Mathf.Abs(this.GetComponent<NavMeshAgent> ().nextPosition.z - (EnemyManager.getWayTransform (destinationWayPoint)).position.z) < 1
+		           && destinationWayPoint != 65) {
+			changeWay = true;
+		}
 	}
+
+	public void initialize(int[] wayRandom) {
+		way = new int[wayRandom.Length];
+		for (int i = 0; i < wayRandom.Length; i++) {
+			way[i] = wayRandom[i];
+		}
+		changeWay = true;
+	}
+
 
 	public void hit()
 	{
