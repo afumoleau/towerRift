@@ -29,7 +29,6 @@ public class PlayerCamera : MonoBehaviour
 				GetComponent<Camera>().rect = new Rect(0f,0f,0.5f,1f);
 				break;
 		}
-		Screen.showCursor = false;
 	}
 
 	void FixedUpdate() 

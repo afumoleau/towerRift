@@ -9,7 +9,6 @@ public class Character : MonoBehaviour
 	public float jumpForce = 350f;
 	public TowerManager towerManager;
 	public GameObject menuInGame;
-	public AnimationClip menuEnter;
 
 	bool stop = false;
 	Camera camera;
@@ -26,9 +25,6 @@ public class Character : MonoBehaviour
 	{
 		KeyboardMove();
 
-		if (Input.GetKeyDown(KeyCode.Escape))
-			toggleMenu();
-
 		if(Input.GetKeyDown(KeyCode.A))
 			spawnTowerBase();
 	}
@@ -41,22 +37,6 @@ public class Character : MonoBehaviour
 		if (Input.GetKey(KeyCode.D)) moveVector += transform.right;
 		if (Input.GetKey(KeyCode.Q)) moveVector += -transform.right;
 		controller.Move(moveVector.normalized * speed * Time.deltaTime);
-	}
-
-	void toggleMenu()
-	{
-		if (stop)
-		{
-			Time.timeScale = 1;
-			menuInGame.SetActive(false);
-			stop = false;
-		}
-		else
-		{
-			Time.timeScale = 0;
-			menuInGame.SetActive(true);
-			stop = true;
-		}
 	}
 
 	void spawnTowerBase()

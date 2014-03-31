@@ -16,7 +16,6 @@ public class OculusPlayer : MonoBehaviour
 	public AnimationState menuEnter;
 
 	private bool stop = false;
-	private AnimationExtras animationMenuEnter;
 
 	public Camera leftCamera;
 	public Camera rightCamera;
