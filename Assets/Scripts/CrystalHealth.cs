@@ -4,16 +4,18 @@ using System.Collections;
 public class CrystalHealth : MonoBehaviour {
 
 	public float crystalHealth;
+
 	private const float maxHealth = 100.0f;
 	private MenuPlayer menu;
 	private bool stop = false;
-	// Use this for initialization
+	public AudioClip gameOverClip;
+	public ParticleEmitter fireEmitter;
+
 	void Start () {
 		crystalHealth = 100f;
 		menu = GameObject.Find("Camera").GetComponent<MenuPlayer>();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if (crystalHealth <= 0.0f && !stop) {
 			Debug.Log ("Game Over !");
@@ -24,9 +26,19 @@ public class CrystalHealth : MonoBehaviour {
 
 	public void hit(float damage){
 		crystalHealth -= damage;
+		fireEmitter.emit = true;
 	}
 
-	private void GameOver(){
+	IEnumerator GameOverSound()
+	{
+		audio.PlayOneShot (gameOverClip);
+		yield return new WaitForSeconds(gameOverClip.length);
+		
 		menu.RestartGame ();
+	}
+
+
+	private void GameOver(){
+		StartCoroutine("GameOverSound");
 	}
 }

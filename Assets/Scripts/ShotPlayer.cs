@@ -5,28 +5,25 @@ public class ShotPlayer : MonoBehaviour {
 
 	public float damage = 50f;
 	public Transform effect;
+	public Camera c;
+
 	private Vector3 lineTransform ;
 	private Vector3 startLine;
-	public Camera c;
 	private Vector3 startPos = Vector3.zero;
 	private Vector3 endPos = Vector3.zero;
 	private const int speed = 5;
-
 	private float myWidth;
 	private float myHeight;
 	private Vector3 middleScreen;
-
 	private double rate;
-
+	public AudioClip tirClip;
 
 	void Start() {
 		myWidth = (float)(Screen.width * 0.25);
 		myHeight = (float)(Screen.height * 0.5);
 	 	middleScreen = new Vector3 (myWidth, myHeight, 0f);
 	}
-
-
-	// Update is called once per frame
+	
 	void Update () {
 
 		lineTransform = transform.position;
@@ -35,6 +32,8 @@ public class ShotPlayer : MonoBehaviour {
 
 		Ray cam = c.ScreenPointToRay (middleScreen);
 		if (Input.GetMouseButtonDown(0)) {
+			if (Time.timeScale == 1)
+				audio.PlayOneShot (tirClip);
 			if (Physics.Raycast (cam, out hit, 1000)) {
 				if(hit.transform.tag == "Enemy"){
 					Transform particleClone = Instantiate(effect,hit.point,Quaternion.LookRotation(hit.normal)) as Transform;
