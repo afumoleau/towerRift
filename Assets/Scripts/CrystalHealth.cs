@@ -5,17 +5,20 @@ public class CrystalHealth : MonoBehaviour {
 
 	public float crystalHealth;
 	private const float maxHealth = 100.0f;
-	private bool showMenu;
+	private MenuPlayer menu;
+	private bool stop = false;
 	// Use this for initialization
 	void Start () {
 		crystalHealth = 100f;
-		showMenu = false;
+		menu = GameObject.Find("Camera").GetComponent<MenuPlayer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if ( crystalHealth <= 0.0f) {
+		if (crystalHealth <= 0.0f && !stop) {
+			Debug.Log ("Game Over !");
 			GameOver();
+			stop = true;
 		}
 	}
 
@@ -24,29 +27,6 @@ public class CrystalHealth : MonoBehaviour {
 	}
 
 	private void GameOver(){
-		showMenu = true;
-	}
-
-	public void OnGUI(){
-		if( showMenu ){
-			Time.timeScale = 0f;
-
-			Component[] filters  = GetComponentsInChildren(typeof(MeshFilter));
-			for (int i=0;i<filters.Length;i++) {
-				filters[i].renderer.enabled = false;
-			}
-
-			GUI.Box (new Rect (10,10, Screen.width / 2 - 20,Screen.height - 20), "Game Over !");
-			
-			if (GUI.Button (new Rect (30,50,Screen.width / 2 - 60,60), "Restart game")) {
-				Application.LoadLevel("StartMenu");
-				Time.timeScale = 1.0f;
-				GameObject.Destroy( gameObject );
-			}
-			
-			if (GUI.Button (new Rect (30,120,Screen.width / 2 - 60,60), "Exit game")) {
-				Application.Quit();
-			}
-		}
+		menu.RestartGame ();
 	}
 }

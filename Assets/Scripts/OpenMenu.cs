@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Class "MenuPlayer" displays the main menu of the player with the Oculus Rift & Kinect.
+/// </summary>
 public class OpenMenu : MonoBehaviour {
 
 	public GameObject head;
@@ -22,10 +25,10 @@ public class OpenMenu : MonoBehaviour {
 	private bool stop = false;
 	private int select = 0;
 	private float timer = 0;
-	
-	void Start () {
-	}
 
+	/// <summary>
+	/// Main loop that handles the events to launch the menu with the kinect.
+	/// </summary>
 	void Update () {
 		timer += Time.fixedDeltaTime;
 		ActionDisplayMenu ();
@@ -33,6 +36,9 @@ public class OpenMenu : MonoBehaviour {
 			ActionInMenu ();
 	}
 
+	/// <summary>
+	/// Function that displays the next menu or not if the left hand is in the air or not.
+	/// </summary>
 	void ActionDisplayMenu () {
 		if (left_hand.transform.position.y > head.transform.position.y && stop == false) {
 			Debug.Log ("Main gauche au dessus !");
@@ -49,6 +55,9 @@ public class OpenMenu : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Function that prints and applies a selection of menu buttons with the right hand.
+	/// </summary>
 	void ActionInMenu () { 
 		myResume = GameObject.Find("Resume");
 		myRestart = GameObject.Find("Restart");

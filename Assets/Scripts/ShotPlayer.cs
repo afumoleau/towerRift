@@ -35,10 +35,8 @@ public class ShotPlayer : MonoBehaviour {
 
 		Ray cam = c.ScreenPointToRay (middleScreen);
 		if (Input.GetMouseButtonDown(0)) {
-			Debug.Log ("Heho");
 			if (Physics.Raycast (cam, out hit, 1000)) {
 				if(hit.transform.tag == "Enemy"){
-					Debug.Log("CUBE ENEMY TOUCH");
 					Transform particleClone = Instantiate(effect,hit.point,Quaternion.LookRotation(hit.normal)) as Transform;
 					StartCoroutine("impact",particleClone);
 					//Send the damage at the method ApplyDamage within enemy Script
@@ -46,7 +44,6 @@ public class ShotPlayer : MonoBehaviour {
 					lineTransform = hit.point;
 				}
 				if(hit.transform.tag == "towerCube"){
-					Debug.Log ("cubeTower touché");
 					//StartPos, endPos to lerp cubeTower near to the player
 					startPos = hit.transform.position;
 					endPos = transform.position + new Vector3(0.0f,2.0f,2.0f);

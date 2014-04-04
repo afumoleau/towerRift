@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Class "OculusPlayer"
+/// </summary>
 public class OculusPlayer : MonoBehaviour
 {
 	public float speed = 10;

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Class "EnemyManager" initializes the waves enemies and their respective paths from random spawns.
+/// </summary>
 public class EnemyManager : MonoBehaviour
 {
 	public Transform source1;
@@ -25,10 +28,12 @@ public class EnemyManager : MonoBehaviour
 	private int[] way;
 	private Transform path;
 	private static Component[] listOfComponents;
-	
+
+	/// <summary>
+	/// Function that initializes the attributes of the class at the beginning of the game.
+	/// </summary>
 	void Start ()
 	{
-		Debug.Log ("Start !");
 		spawnRandom ();
 		
 		ways = new Way ();
@@ -40,7 +45,10 @@ public class EnemyManager : MonoBehaviour
 		listOfComponents = new Transform[65];
 		listOfComponents = path.GetComponentsInChildren (typeof(Transform));
 	}
-	
+
+	/// <summary>
+	/// Function that initializes the enemy waves.
+	/// </summary>
 	void Update ()
 	{
 		clockSpawnDelay += Time.deltaTime;
@@ -52,7 +60,7 @@ public class EnemyManager : MonoBehaviour
 				newSpawn.parent = transform;
 				newSpawn.position = source.position;
 				enemy = newSpawn.GetComponent<Enemy> ();
-				enemy.initialize(way);
+				enemy.initializeWay(way);
 				leftToSpawn--;
 				if (leftToSpawn == 0)
 					clockWavesDelay = 0;
@@ -68,7 +76,10 @@ public class EnemyManager : MonoBehaviour
 			}
 		}
 	}
-	
+
+	/// <summary>
+	/// Function that calculates a random spawn on the map.
+	/// </summary>
 	void spawnRandom () {
 		int randomSource = Random.Range (0, 4);
 		switch (randomSource) { 
@@ -90,7 +101,10 @@ public class EnemyManager : MonoBehaviour
 			break;
 		}
 	}
-	
+
+	/// <summary>
+	/// Function that calculates a random path on the map from a pre-calculated spawn.
+	/// </summary>
 	void wayRandom () {
 		int point = sourceNb;
 		int pointTmp;
@@ -112,7 +126,12 @@ public class EnemyManager : MonoBehaviour
 		} while (i != (maxOfWayPoint - 1));
 		way [i] = 65; 
 	}
-	
+
+	/// <summary>
+	/// Function that determines if the checkpoint is not already on the way to boot. That permits to avoid that an enemy wave loop or turn back.
+	/// </summary>
+	/// <param name=n>The number of checkpoint.</param>
+	/// <returns>Return "true" is the checkpoint is on the way to boot, "false" otherwise.</returns>
 	private bool isInWay(int n) {
 		for (int i = 0; i < maxOfWayPoint; ++i) {
 			if (way [i] == n)
@@ -120,11 +139,19 @@ public class EnemyManager : MonoBehaviour
 		}
 		return false;
 	}
-	
+
+	/// <summary>
+	/// Function that allows to find the checkpoint component corresponding to the number passed as a parameter.
+	/// </summary>
+	/// <param name=n>The number of the checkpoint.</param>
+	/// <returns>The component which his number is passed as a parameter.</returns>
 	public static Transform getWayTransform (int n){
 		return listOfComponents[findIndexWayPoint(n)].transform;
 	}
-	
+
+	/// <summary>
+	/// Function that allows to display a way initialized. It is used for debugging.
+	/// </summary>
 	private void displayWay () {
 		Debug.Log ("--- Way ---");
 		for (int i = 0; i < maxOfWayPoint; i++) {
@@ -132,7 +159,12 @@ public class EnemyManager : MonoBehaviour
 		}
 		Debug.Log (" ");
 	}
-	
+
+	/// <summary>
+	/// Function that allows to retrieve the index in the table checkpoint whose number is passed as a parameter.
+	/// </summary>
+	/// <param name=n>The number of the checkpoint in the scene.</param>
+	/// <returns>The index of the checkpoint in the table of checkpoints.</returns>
 	private static int findIndexWayPoint (int n) {
 		string str = string.Concat("Waypoint", n.ToString());
 		for (int i = 1; i < 66; ++i) {
@@ -142,7 +174,10 @@ public class EnemyManager : MonoBehaviour
 		Debug.Log ("Error : WayPoint not found");
 		return -1;
 	}
-	
+
+	/// <summary>
+	/// Function that displays all checkpoints in the table of checkpoints with their position. It is used for debugging.
+	/// </summary>
 	private void displayWayTransform () {
 		for (int i = 0; i < 66; ++i) {
 			Debug.Log (listOfComponents[i].name + " " + listOfComponents[i].transform.position.x + " " + listOfComponents[i].transform.position.y + " " + listOfComponents[i].transform.position.z);

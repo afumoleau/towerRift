@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Class "Way" initializes all possible paths on the map for enemies in a table structure.
+/// </summary>
 public class Way : MonoBehaviour {
 	
 	public WayPoint[] waysOfWayPoints;
@@ -9,6 +12,9 @@ public class Way : MonoBehaviour {
 	private Transform path;
 	private Transform[] pathComp;
 
+	/// <summary>
+	/// Constructor of the class Way. It initializes the class variables.
+	/// </summary>
 	public Way ()
 	{
 		waysOfWayPoints = new WayPoint[65];
@@ -18,6 +24,13 @@ public class Way : MonoBehaviour {
 			waysOfWayPoints [i] = new WayPoint();
 		}
 
+		initializeWay ();
+	}
+
+	/// <summary>
+	/// Function that initializes the tree of ways.
+	/// </summary>
+	void initializeWay () {
 		setWay(1, 12, 2);
 		setWay(2, 14, 0);
 		setWay(3, 15, 0);
@@ -53,18 +66,28 @@ public class Way : MonoBehaviour {
 		setWay(65, 65, 65);
 	}
 
+	/// <summary>
+	/// Function that gives the number of checkpoint at the index given. 
+	/// </summary>
+	/// <param name=n>The index in the table of checkpoints.</param>
+	/// <returns>The number of checkpoints.</returns>
 	public int getNumWayPoint (int n) {
 		return waysOfWayPoints[n].tabNodes[0];
 	}
 
-	public int getNbWayPoint () {
-		return 65;
-	}
-
+	/// <summary>
+	/// Function that setting a way on the map.
+	/// </summary>
+	/// <param name=></param>
+	/// <param name=></param>
+	/// <param name=></param>
 	public void setWay(int node, int node1, int node2) {
 		waysOfWayPoints [node - 1].setWayPoint (node, node1, node2);
 	}
 
+	/// <summary>
+	/// Function that displays all possible ways. It's used for debugging.
+	/// </summary>
 	public void displayWay () {
 		for (int i = 0; i < 65; i++) {
 			Debug.Log (i + " : " + waysOfWayPoints[i].tabNodes[0] + " " + waysOfWayPoints[i].tabNodes[1] + " " + waysOfWayPoints[i].tabNodes[2]);

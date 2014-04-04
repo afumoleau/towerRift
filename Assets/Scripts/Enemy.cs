@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Class "Enemy" manages interactions enemies (Attacks crystal and travels on the map)
+/// </summary>
 public class Enemy : MonoBehaviour
 {
 	private float clock = 0f;
@@ -20,12 +23,17 @@ public class Enemy : MonoBehaviour
 	private bool changeWay = false;
 	private int index = 0;
 
-
+	/// <summary>
+	/// Function that allows to retrieve the Crystal component.
+	/// </summary>
 	void Start ()
 	{
 		crystal = (CrystalHealth)GameObject.Find("Crystal").GetComponent("CrystalHealth");
 	}
-	
+
+	/// <summary>
+	/// Function that allows to manage the behavior of enemies. If the enemies are near the crystal then they will be shooting.
+	/// </summary>
 	void Update ()
 	{
 		clock += Time.deltaTime;
@@ -52,14 +60,18 @@ public class Enemy : MonoBehaviour
 			
 			this.GetComponent<NavMeshAgent> ().SetDestination (EnemyManager.getWayTransform (destinationWayPoint).position);
 			changeWay = false;
-		} else if (Mathf.Abs (this.GetComponent<NavMeshAgent> ().nextPosition.x - (EnemyManager.getWayTransform (destinationWayPoint)).position.x) < 1 
-		           && Mathf.Abs(this.GetComponent<NavMeshAgent> ().nextPosition.z - (EnemyManager.getWayTransform (destinationWayPoint)).position.z) < 1
+		} else if (Mathf.Abs (this.GetComponent<NavMeshAgent> ().nextPosition.x - (EnemyManager.getWayTransform (destinationWayPoint)).position.x) < 5
+		           && Mathf.Abs(this.GetComponent<NavMeshAgent> ().nextPosition.z - (EnemyManager.getWayTransform (destinationWayPoint)).position.z) < 5
 		           && destinationWayPoint != 65) {
 			changeWay = true;
 		}
 	}
 
-	public void initialize(int[] wayRandom) {
+	/// <summary>
+	/// Function that calculates a random path to the enemy waves.
+	/// </summary>
+	/// <param name=wayRandom>The random way to initialize.</param>
+	public void initializeWay(int[] wayRandom) {
 		way = new int[wayRandom.Length];
 		for (int i = 0; i < wayRandom.Length; i++) {
 			way[i] = wayRandom[i];
@@ -67,7 +79,9 @@ public class Enemy : MonoBehaviour
 		changeWay = true;
 	}
 
-
+	/// <summary>
+	/// 
+	/// </summary>
 	public void hit()
 	{
 		hitPoints--;
@@ -83,10 +97,4 @@ public class Enemy : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	/*
-	void OnGUI() {
-		Vector2 targetPos;
-		targetPos = Camera.main.WorldToScreenPoint (transform.position);
-		GUI.Box(new Rect(targetPos.x - healthBarLength / 2, Screen.height - targetPos.y - 10, 20, 5), "");
-	}*/
 }
