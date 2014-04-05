@@ -15,7 +15,7 @@ Platform assembly: C:\Users\vivi\Documents\GitHub\towerRift\towerRift_Data\Manag
 Loading C:\Users\vivi\Documents\GitHub\towerRift\towerRift_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\vivi\Documents\GitHub\towerRift\towerRift_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
 Loading C:\Users\vivi\Documents\GitHub\towerRift\towerRift_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-- Completed reload, in  0.044 seconds
+- Completed reload, in  0.043 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 desktop: 1920x1080 60Hz; virtual: 3600x1080 at 0,0
@@ -23,15 +23,15 @@ The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1699)
 
-UnloadTime: 0.508527 ms
+UnloadTime: 0.226945 ms
 NuiInitialize Failed.
  
 (Filename: C:/BuildAgent/work/d3d49558e4d408f4/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 53)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 1063.
-Total: 0.624401 ms (FindLiveObjects: 0.048931 ms CreateObjectMapping: 0.009906 ms MarkObjects: 0.150696 ms  DeleteObjects: 0.006304 ms)
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 1071.
+Total: 1.010750 ms (FindLiveObjects: 0.080751 ms CreateObjectMapping: 0.015910 ms MarkObjects: 0.235351 ms  DeleteObjects: 0.009005 ms)
 
 Game Over !
  
@@ -41,13 +41,37 @@ The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1699)
 
-UnloadTime: 3.376271 ms
+UnloadTime: 3.789637 ms
 NuiInitialize Failed.
  
 (Filename: C:/BuildAgent/work/d3d49558e4d408f4/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 53)
 
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1066.
-Total: 0.654420 ms (FindLiveObjects: 0.045629 ms CreateObjectMapping: 0.011407 ms MarkObjects: 0.190922 ms  DeleteObjects: 0.028518 ms)
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1074.
+Total: 0.736673 ms (FindLiveObjects: 0.051633 ms CreateObjectMapping: 0.013208 ms MarkObjects: 0.205332 ms  DeleteObjects: 0.024015 ms)
+
+HandleD3DDeviceLost
+  HandleD3DDeviceLost: needs reset, doing it
+FullResetD3DDevice
+ResetD3DDevice
+dev->Reset
+D3Dwindow device not lost anymore
+Game Over !
+ 
+(Filename: C:/BuildAgent/work/d3d49558e4d408f4/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 53)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1699)
+
+UnloadTime: 3.947839 ms
+NuiInitialize Failed.
+ 
+(Filename: C:/BuildAgent/work/d3d49558e4d408f4/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 53)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1074.
+Total: 0.742677 ms (FindLiveObjects: 0.050432 ms CreateObjectMapping: 0.013208 ms MarkObjects: 0.200529 ms  DeleteObjects: 0.023114 ms)
 

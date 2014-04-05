@@ -5,11 +5,10 @@ public class CrystalHealth : MonoBehaviour {
 
 	public float crystalHealth;
 
-	private const float maxHealth = 100.0f;
+	private const float maxHealth = 1000.0f;
 	private MenuPlayer menu;
 	private bool stop = false;
 	public AudioClip gameOverClip;
-	public ParticleEmitter fireEmitter;
 
 	void Start () {
 		crystalHealth = 100f;
@@ -26,7 +25,6 @@ public class CrystalHealth : MonoBehaviour {
 
 	public void hit(float damage){
 		crystalHealth -= damage;
-		fireEmitter.emit = true;
 	}
 
 	IEnumerator GameOverSound()
