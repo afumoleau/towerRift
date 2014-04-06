@@ -38,6 +38,6 @@ public class TowerManager : Singleton<TowerManager>
 	{
 		Transform newTowerCube = Instantiate(towerCubePrefab) as Transform;
 		newTowerCube.parent = transform;
-		newTowerCube.position = new Vector3(-25 + Random.value * 75, 0, -25 + Random.value * 75);
+		newTowerCube.position = new Vector3(-25 + Random.value * 75, towerCubePrefab.position.y, -25 + Random.value * 75);
 	}
 }
