@@ -19,11 +19,11 @@ public class Bullet : MonoBehaviour
 
 		if(clock >= duration)
 		{
-			if(destination != null){
-
-				if( destination.GetComponent<CrystalHealth>() )
-					destination.GetComponent<CrystalHealth>().hit(5f);
-				if( destination.GetComponent<Enemy>() )
+			if(destination != null)
+			{
+				if(destination.GetComponent<Crystal>())
+					destination.GetComponent<Crystal>().hit(10f);
+				if(destination.GetComponent<Enemy>())
 					destination.GetComponent<Enemy>().hit();
 			}
 

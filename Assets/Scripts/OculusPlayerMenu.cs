@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 ///  Class "MenuPlayer" displays the main menu of the player with the Oculus Rift & Kinect.
 /// </summary>
-public class OpenMenu : MonoBehaviour {
+public class OculusPlayerMenu : MonoBehaviour {
 
 	public GameObject head;
 	public GameObject left_hand;

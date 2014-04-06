@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 ///  Class "Way" initializes all possible paths on the map for enemies in a table structure.
 /// </summary>
-public class Way : MonoBehaviour {
+public class Way {
 	
 	public WayPoint[] waysOfWayPoints;
 	private Transform[] listOfTransforms;

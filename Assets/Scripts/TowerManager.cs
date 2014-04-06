@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TowerManager : MonoBehaviour
+public class TowerManager : Singleton<TowerManager>
 {
+	protected TowerManager(){}
+
 	public Transform spawnPrefab;
 	public Transform towerBasePrefab;
 	public Transform towerCubePrefab;

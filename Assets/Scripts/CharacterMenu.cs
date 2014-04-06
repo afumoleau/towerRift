@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 /// <summary>
 ///  Class "MenuPlayer" displays the main menu of the player in the first person.
 /// </summary>
-public class MenuPlayer : MonoBehaviour
+public class CharacterMenu : MonoBehaviour
+
 {
 	
 	public GUISkin skin;
@@ -33,14 +34,16 @@ public class MenuPlayer : MonoBehaviour
 
 	public Color statColor = Color.yellow;
 
-	public string[] credits= {
+	public string[] credits= 
+	{
 		"Programming Project",
 		"Programming by A. Fumoleau, A. Girard, R. Verger, V. François",
 		"Copyright (c) 2014, University of Bordeaux"} ;
 
 	public Texture[] crediticons;
 	
-	public enum Page {
+	public enum Page 
+	{
 		None,Main,Options,Credits
 	}
 	
@@ -53,26 +56,32 @@ public class MenuPlayer : MonoBehaviour
 	private string[]  toolbarstrings =  {"Audio","Graphics","Stats","System"};
 	
 	/// <summary>
-	/// Function that pause the game and starts the menu at the beginning of the game.
+	/// Pause the game and starts the menu at the beginning of the game.
 	/// </summary>
-	void Start() {
+	void Start()
+	
+	{
 		fpsarray = new float[Screen.width];
 		Time.timeScale = 1;
 		PauseGame();
 	}
 
 	/// <summary>
-	/// Function that draws the graph of FPS.
+	/// Draws the graph of FPS.
 	/// </summary>
-	void OnPostRender() {
-		if (showfpsgraph && mat != null) {
+	void OnPostRender() 
+	{
+		if (showfpsgraph && mat != null) 
+		{
 			GL.PushMatrix ();
 			GL.LoadPixelMatrix();
 			for (var i = 0; i < mat.passCount; ++i)
+			
 			{
 				mat.SetPass(i);
 				GL.Begin( GL.LINES );
-				for (int x=0; x < fpsarray.Length; ++x) {
+				for (int x=0; x < fpsarray.Length; ++x) 
+				{
 					GL.Vertex3(x, fpsarray[x], gldepth);
 				}
 				GL.End();
@@ -83,28 +92,35 @@ public class MenuPlayer : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that calculates the graph FPS.
+	/// Computes the graph FPS.
 	/// </summary>
-	void ScrollFPS() {
-		for (int x = 1; x < fpsarray.Length; ++x) {
+	void ScrollFPS() 
+	{
+		for (int x = 1; x < fpsarray.Length; ++x) 
+		{
 			fpsarray[x-1]=fpsarray[x];
 		}
-		if (fps < 1000) {
+		if (fps < 1000) 
+		{
 			fpsarray[fpsarray.Length - 1]=fps;
 		}
 	}
 
 	/// <summary>
-	/// Function that pause / unpause the game when the player presses the escape.
+	/// Pause / unpause the game when the player presses the escape.
 	/// </summary>
-	void LateUpdate () {
-		if (showfps || showfpsgraph) {
+	void LateUpdate () 
+	{
+		if (showfps || showfpsgraph) 
+		{
 			FPSUpdate();
 		}
 		
 		if (Input.GetKeyDown("escape")) 
+		
 		{
 			switch (currentPage) 
+			
 			{
 			case Page.None: 
 				PauseGame(); 
@@ -124,16 +140,20 @@ public class MenuPlayer : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that allows to navigate through the menus.
+	/// Navigate through the menus.
 	/// </summary>
-	void OnGUI () {
-		if (skin != null) {
+	void OnGUI () 
+	{
+		if (skin != null) 
+		{
 			GUI.skin = skin;
 		}
 		ShowStatNums();
-		if (IsGamePaused()) {
+		if (IsGamePaused()) 
+		{
 			GUI.color = statColor;
-			switch (currentPage) {
+			switch (currentPage) 
+			{
 			case Page.Main: MainPauseMenu(); break;
 			case Page.Options: ShowToolbar(); break;
 			case Page.Credits: ShowCredits(); break;
@@ -142,12 +162,14 @@ public class MenuPlayer : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that allows to show the toolbar of the menu.
+	/// Show the toolbar of the menu.
 	/// </summary>
-	void ShowToolbar() {
+	void ShowToolbar() 
+	{
 		BeginPage(300,300);
 		toolbarInt = GUILayout.Toolbar (toolbarInt, toolbarstrings);
-		switch (toolbarInt) {
+		switch (toolbarInt) 
+		{
 		case 0: VolumeControl(); break;
 		case 3: ShowDevice(); break;
 		case 1: Qualities(); QualityControl(); break;
@@ -157,32 +179,38 @@ public class MenuPlayer : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that allows to show the credits of the game.
+	/// Show the credits of the game.
 	/// </summary>
-	void ShowCredits() {
+	void ShowCredits() 
+	{
 		BeginPage(300,300);
-		foreach(string credit in credits) {
+		foreach(string credit in credits) 
+		{
 			GUILayout.Label(credit);
 		}
-		foreach( Texture credit in crediticons) {
+		foreach( Texture credit in crediticons) 
+		{
 			GUILayout.Label(credit);
 		}
 		EndPage();
 	}
 
 	/// <summary>
-	/// Function that allows to display a back button clickable in the menu.
+	/// Display a back button in the menu.
 	/// </summary>
-	void ShowBackButton() {
-		if (GUI.Button(new Rect(20, Screen.height - 50, 50, 20),"Back")) {
+	void ShowBackButton() 
+	{
+		if (GUI.Button(new Rect(20, Screen.height - 50, 50, 20),"Back")) 
+		{
 			currentPage = Page.Main;
 		}
 	}
 
 	/// <summary>
-	/// Function to display the current configuration of the game.
+	/// Display the current configuration of the game.
 	/// </summary>
-	void ShowDevice() {
+	void ShowDevice() 
+	{
 		GUILayout.Label("Unity player version "+Application.unityVersion);
 		GUILayout.Label("Graphics: "+SystemInfo.graphicsDeviceName+" "+
 		                SystemInfo.graphicsMemorySize+"MB\n"+
@@ -196,8 +224,10 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that changes the graphics quality of the game.
 	/// </summary>
-	void Qualities() {
+	void Qualities() 
+	{
 		switch (QualitySettings.currentLevel) 
+		
 		{
 		case QualityLevel.Fastest:
 			GUILayout.Label("Fastest");
@@ -223,12 +253,15 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that allows to display two clickable buttons that increase / decrease the graphics quality of the game.
 	/// </summary>
-	void QualityControl() {
+	void QualityControl() 
+	{
 		GUILayout.BeginHorizontal();
-		if (GUILayout.Button("Decrease")) {
+		if (GUILayout.Button("Decrease")) 
+		{
 			QualitySettings.DecreaseLevel();
 		}
-		if (GUILayout.Button("Increase")) {
+		if (GUILayout.Button("Increase")) 
+		{
 			QualitySettings.IncreaseLevel();
 		}
 		GUILayout.EndHorizontal();
@@ -237,7 +270,8 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that displays a slider for Controlling the audio volume of the game
 	/// </summary>
-	void VolumeControl() {
+	void VolumeControl() 
+	{
 		GUILayout.Label("Volume");
 		AudioListener.volume = GUILayout.HorizontalSlider(AudioListener.volume, 0, 1);
 	}
@@ -245,7 +279,8 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// 
 	/// </summary>
-	void StatControl() {
+	void StatControl() 
+	{
 		GUILayout.BeginHorizontal();
 		showfps = GUILayout.Toggle(showfps,"FPS");
 		showtris = GUILayout.Toggle(showtris,"Triangles");
@@ -257,9 +292,11 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that calculates the FPS.
 	/// </summary>
-	void FPSUpdate() {
+	void FPSUpdate() 
+	{
 		float delta = Time.smoothDeltaTime;
-		if (!IsGamePaused() && delta !=0.0) {
+		if (!IsGamePaused() && delta !=0.0) 
+		{
 			fps = 1 / delta;
 		}
 	}
@@ -267,21 +304,26 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that displays the FPS, the number of triangles, the number of vertices and the graph of FPS.
 	/// </summary>
-	void ShowStatNums() {
+	void ShowStatNums() 
+	{
 		GUILayout.BeginArea(new Rect(Screen.width - 100, 10, 100, 200));
-		if (showfps) {
+		if (showfps) 
+		{
 			string fpsstring= fps.ToString ("#,##0 fps");
 			GUI.color = Color.Lerp(lowFPSColor, highFPSColor,(fps-lowFPS)/(highFPS-lowFPS));
 			GUILayout.Label (fpsstring);
 		}
-		if (showtris || showvtx) {
+		if (showtris || showvtx) 
+		{
 			GetObjectStats();
 			GUI.color = statColor;
 		}
-		if (showtris) {
+		if (showtris) 
+		{
 			GUILayout.Label (tris+"tri");
 		}
-		if (showvtx) {
+		if (showvtx) 
+		{
 			GUILayout.Label (verts+"vtx");
 		}
 		GUILayout.EndArea();
@@ -292,16 +334,19 @@ public class MenuPlayer : MonoBehaviour
 	/// </summary>
 	/// <param name=width>Width of the page</param>
 	/// <param name=height>Height of the page</param>
-	void BeginPage(int width, int height) {
+	void BeginPage(int width, int height) 
+	{
 		GUILayout.BeginArea( new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height));
 	}
 
 	/// <summary>
 	/// Function that displays the back button in the menu if needed.
 	/// </summary>
-	void EndPage() {
+	void EndPage() 
+	{
 		GUILayout.EndArea();
-		if (currentPage != Page.Main) {
+		if (currentPage != Page.Main) 
+		{
 			ShowBackButton();
 		}
 	}
@@ -310,45 +355,56 @@ public class MenuPlayer : MonoBehaviour
 	/// Function that checks if it's the beginning of the game or not.
 	/// </summary>
 	/// <returns>Return "true" if it's the beginnig of the game, "false" otherwise.</returns>
-	bool IsBeginning() {
+	bool IsBeginning() 
+	{
 		return start == true;
 	}
 
-	public void SetStart (bool b) {
+	public void SetStart (bool b) 
+	{
 		start = b;
 	}
 	
 	/// <summary>
 	/// Function that displays the buttons on the main menu page.
 	/// </summary>
-	void MainPauseMenu() {
+	void MainPauseMenu() 
+	{
 		BeginPage(200, 200);
-		if (GUILayout.Button ((IsBeginning()) ? "Play" : "Continue")) {
+		if (GUILayout.Button ((IsBeginning()) ? "Play" : "Continue")) 
+		{
 			UnPauseGame();
 		}
-		if (!IsBeginning()) {
-			if (GUILayout.Button ("Restart")) {
+		if (!IsBeginning()) 
+		{
+			if (GUILayout.Button ("Restart")) 
+			{
 				RestartGame();
 			}
 		}
-		if (GUILayout.Button ("Options")) {
+		if (GUILayout.Button ("Options")) 
+		{
 			currentPage = Page.Options;
 		}
-		if (GUILayout.Button ("Credits")) {
+		if (GUILayout.Button ("Credits")) 
+		{
 			currentPage = Page.Credits;
 		}
-		if (GUILayout.Button ("Quit")) {
+		if (GUILayout.Button ("Quit")) 
+		{
 			QuitGame();
 		}
 
 		EndPage();
 	}
 
-	void GetObjectStats() {
+	void GetObjectStats() 
+	{
 		verts = 0;
 		tris = 0;
 		GameObject[] ob = FindObjectsOfType(typeof(GameObject)) as GameObject[];
-		foreach (GameObject obj in ob) {
+		foreach (GameObject obj in ob) 
+		{
 			GetObjectStats(obj);
 		}
 	}
@@ -357,10 +413,12 @@ public class MenuPlayer : MonoBehaviour
 	/// Function that calculates the number of triangles and vertices in the 3D world.
 	/// </summary>
 	/// <param name=></param>
-	void GetObjectStats(GameObject obj) {
+	void GetObjectStats(GameObject obj) 
+	{
 		Component[] filters;
 		filters = obj.GetComponentsInChildren<MeshFilter>();
 		foreach( MeshFilter f  in filters )
+		
 		{
 			tris += f.sharedMesh.triangles.Length/3;
 			verts += f.sharedMesh.vertexCount;
@@ -370,7 +428,8 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that pauses the game.
 	/// </summary>
-	void PauseGame() {
+	void PauseGame() 
+	{
 		savedTimeScale = Time.timeScale;
 		Time.timeScale = 0;
 		Screen.showCursor = true;
@@ -381,13 +440,15 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that unpauses the game.
 	/// </summary>
-	void UnPauseGame() {
+	void UnPauseGame() 
+	{
 		Time.timeScale = savedTimeScale;
 		Screen.showCursor = false;
 		AudioListener.pause = false;
 		currentPage = Page.None;
 		
-		if (IsBeginning()) {
+		if (IsBeginning()) 
+		{
 			start = false;
 		}
 	}
@@ -395,7 +456,8 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that restart the game.
 	/// </summary>
-	public void RestartGame() {
+	public void RestartGame() 
+	{
 		Application.LoadLevel("Game");
 		Time.timeScale = 1;
 	}
@@ -403,7 +465,8 @@ public class MenuPlayer : MonoBehaviour
 	/// <summary>
 	/// Function that quit the game.
 	/// </summary>
-	void QuitGame() {
+	void QuitGame() 
+	{
 		Application.Quit();
 	}
 
@@ -411,15 +474,18 @@ public class MenuPlayer : MonoBehaviour
 	/// Function that checks if the game is paused.
 	/// </summary>
 	/// <returns>Return "true" if the game is paused, "false" otherwise.</returns>
-	bool IsGamePaused() {
+	bool IsGamePaused() 
+	{
 		return (Time.timeScale == 0);
 	}
 
 	/// <summary>
 	/// Function that pauses the sound if the game is paused.
 	/// </summary>
-	void OnApplicationPause(bool pause) {
-		if (IsGamePaused()) {
+	void OnApplicationPause(bool pause) 
+	{
+		if (IsGamePaused()) 
+		{
 			AudioListener.pause = true;
 		}
 	}

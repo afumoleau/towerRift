@@ -7,15 +7,15 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
 	private float clock = 0f;
-	public const float reloadTime = 0.5f;
-	public const float range = 10f;
-	public int hitPoints = 5;
+	public float reloadTime = 0.5f;
+	public float range = 10f;
 	public int maxHealth = 5;
 	public int curHealth = 5;
 	public float healthBarLength;
 	public Transform bulletPrefab;
+	public TextMesh healthText;
 
-	private CrystalHealth crystal;
+	private Crystal crystal;
 	private int currentWayPoint;
 	private int tmpDestinationWayPoint;
 	private int destinationWayPoint;
@@ -23,12 +23,17 @@ public class Enemy : MonoBehaviour
 	private bool changeWay = false;
 	private int index = 0;
 
+	private Character character;
+
 	/// <summary>
 	/// Function that allows to retrieve the Crystal component.
 	/// </summary>
 	void Start ()
 	{
-		crystal = (CrystalHealth)GameObject.Find("Crystal").GetComponent("CrystalHealth");
+		character = Character.Instance;
+		crystal = GameObject.Find("crystal").GetComponent<Crystal>();
+		healthText = transform.Find("healthText").GetComponent<TextMesh>();
+		healthText.text = this.curHealth.ToString()+ "/"+ maxHealth;
 	}
 
 	/// <summary>
@@ -84,17 +89,15 @@ public class Enemy : MonoBehaviour
 	/// </summary>
 	public void hit()
 	{
-		hitPoints--;
-		healthBarLength = healthBarLength * (curHealth /(float)maxHealth);
-		if(hitPoints <= 0){
-			GameObject player = GameObject.Find("Player");
-			if( player ){
-				PutBase playerBase = ((PutBase)player.GetComponent ("PutBase"));
-				if( playerBase ){
-					playerBase.putMoney (100);
-				}
-			}
+		curHealth--;
+		//healthBarLength = healthBarLength * (curHealth /(float)maxHealth);
+		if(curHealth <= 0)
+		{
+				this.curHealth = 0;
+			character.money += 100f;
 			Destroy(gameObject);
 		}
+
+		healthText.text = this.curHealth.ToString()+ "/"+ maxHealth;
 	}
 }

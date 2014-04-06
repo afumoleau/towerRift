@@ -6,29 +6,24 @@ using System.Collections;
 /// </summary>
 public class OculusPlayer : MonoBehaviour
 {
-	public float speed = 10;
-	public Transform cursor;
-
-	public Transform mapCursor;
 	public Transform cursorCamera;
-	public Transform cursorPointer;
-
-	public PinManager pinManager;
-	public GameObject menuInGame;
-	//public AnimationClip menuEnter;
-	public AnimationState menuEnter;
-
-	private bool stop = false;
+	public Transform rightHand;
+	public Transform head;
+	public Transform leftHand;
 
 	public Camera leftCamera;
 	public Camera rightCamera;
 	public Collider ground;
-	public Transform towerManager;
 
+	private TowerManager towerManager;
+	private HintManager hintManager;
 	private Transform manipulatedObject;
 
 	void Start ()
 	{
+		hintManager = HintManager.Instance;
+		towerManager = TowerManager.Instance;
+
 		switch(PlayerPrefs.GetInt("gameMode"))
 		{
 			case 0 : // Only standard player
@@ -48,28 +43,8 @@ public class OculusPlayer : MonoBehaviour
 
 	void Update ()
 	{
-		// Move
-		CharacterController controller = GetComponent<CharacterController>();
-		Vector3 moveVector = Vector3.zero;
-		if (Input.GetKey(KeyCode.LeftArrow))
-			moveVector += Vector3.Cross(transform.forward, transform.up);
-		if (Input.GetKey(KeyCode.RightArrow))
-			moveVector += -Vector3.Cross(transform.forward, transform.up);
-		if (Input.GetKey(KeyCode.UpArrow))
-			moveVector += transform.forward;
-		if (Input.GetKey(KeyCode.DownArrow))
-			moveVector += -transform.forward;
-		controller.Move(moveVector.normalized * speed * Time.deltaTime);
-		
-		//cursor.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
-		/*
-		Ray ray = new Ray(Camera.main.transform.position, (cursor.position - Camera.main.transform.position).normalized);
-		Debug.Log(ray);
-		Debug.DrawRay(ray.origin, ray.direction, Color.red, 5f);
-		*/
-
 		Vector3 rayOrigin = cursorCamera.position;
-		Vector3 rayDirection = Vector3.Normalize(cursorPointer.position - rayOrigin);
+		Vector3 rayDirection = Vector3.Normalize(rightHand.position - rayOrigin);
 
 		Ray ray = new Ray(rayOrigin, rayDirection);
 		RaycastHit hit;
@@ -77,7 +52,8 @@ public class OculusPlayer : MonoBehaviour
 		{
 			if(hit.collider.gameObject.CompareTag("Grid"))
 			{
-				//pinManager.pin(hit.point);
+				if(head.position.x < leftHand.position.x)
+					hintManager.pin(hit.point);
 			}
 			if(hit.collider.gameObject.CompareTag("towerCube"))
 			{
@@ -88,7 +64,7 @@ public class OculusPlayer : MonoBehaviour
 		
 		if(manipulatedObject != null)
 		{
-			if(manipulatedObject.parent != towerManager)
+			if(manipulatedObject.parent != towerManager.transform)
 				manipulatedObject = null;
 			else
 			{
@@ -96,28 +72,5 @@ public class OculusPlayer : MonoBehaviour
 					manipulatedObject.position = hit.point + new Vector3(0f, 2.5f, 0f);
 			}
 		}
-
-		//Action ();
 	}
-
-	void Action ()
-	{		
-		if (Input.GetKeyDown (KeyCode.Escape))
-		{
-			if (stop) {
-				Time.timeScale = 1;
-				menuInGame.SetActive(false);
-				stop = false;
-			}
-			else {
-				Time.timeScale = 0;
-				menuInGame.SetActive(true);
-				stop = true;
-			}
-		}
-	}
-
-	/*void playAnimation() {
-		menuInGame.animation.Play ();
-	}*/
 }

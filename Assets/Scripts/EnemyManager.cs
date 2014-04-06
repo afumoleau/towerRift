@@ -4,8 +4,10 @@ using System.Collections;
 /// <summary>
 ///  Class "EnemyManager" initializes the waves enemies and their respective paths from random spawns.
 /// </summary>
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : Singleton<EnemyManager>
 {
+	protected EnemyManager(){}
+ 
 	public Transform source1;
 	public Transform source2;
 	public Transform source3;
@@ -30,13 +32,13 @@ public class EnemyManager : MonoBehaviour
 	private static Component[] listOfComponents;
 
 	/// <summary>
-	/// Function that initializes the attributes of the class at the beginning of the game.
+	/// Initializes the attributes of the class at the beginning of the game.
 	/// </summary>
 	void Start ()
 	{
 		spawnRandom ();
 		
-		ways = new Way ();
+		ways = new Way();
 		
 		way = new int[maxOfWayPoint];
 		
@@ -47,7 +49,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that initializes the enemy waves.
+	/// Initializes the enemy waves.
 	/// </summary>
 	void Update ()
 	{
@@ -78,7 +80,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that calculates a random spawn on the map.
+	/// Computes a random spawn on the map.
 	/// </summary>
 	void spawnRandom () {
 		int randomSource = Random.Range (0, 4);
@@ -103,7 +105,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that calculates a random path on the map from a pre-calculated spawn.
+	/// Computes a random path on the map from a pre-calculated spawn.
 	/// </summary>
 	void wayRandom () {
 		int point = sourceNb;
@@ -128,7 +130,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that determines if the checkpoint is not already on the way to boot. That permits to avoid that an enemy wave loop or turn back.
+	/// Determines if the checkpoint is not already on the way to boot. That permits to avoid that an enemy wave loop or turn back.
 	/// </summary>
 	/// <param name=n>The number of checkpoint.</param>
 	/// <returns>Return "true" is the checkpoint is on the way to boot, "false" otherwise.</returns>
@@ -141,7 +143,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that allows to find the checkpoint component corresponding to the number passed as a parameter.
+	/// Allows to find the checkpoint component corresponding to the number passed as a parameter.
 	/// </summary>
 	/// <param name=n>The number of the checkpoint.</param>
 	/// <returns>The component which his number is passed as a parameter.</returns>
@@ -150,7 +152,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that allows to display a way initialized. It is used for debugging.
+	/// Allows to display a way initialized. It is used for debugging.
 	/// </summary>
 	private void displayWay () {
 		Debug.Log ("--- Way ---");
@@ -161,7 +163,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that allows to retrieve the index in the table checkpoint whose number is passed as a parameter.
+	/// Allows to retrieve the index in the table checkpoint whose number is passed as a parameter.
 	/// </summary>
 	/// <param name=n>The number of the checkpoint in the scene.</param>
 	/// <returns>The index of the checkpoint in the table of checkpoints.</returns>
@@ -176,7 +178,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that displays all checkpoints in the table of checkpoints with their position. It is used for debugging.
+	/// Displays all checkpoints in the table of checkpoints with their position. It is used for debugging.
 	/// </summary>
 	private void displayWayTransform () {
 		for (int i = 0; i < 66; ++i) {

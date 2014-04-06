@@ -3,7 +3,9 @@ using System.Collections;
 
 public class PlayerCamera : MonoBehaviour
 {
-	private Transform player;
+	private Character character;
+	public Crystal crystal;
+
 	//adapt mouse movement with camera movement in 3D.
 	public float sensitivity=5f;
 	private float xRotation;
@@ -14,9 +16,13 @@ public class PlayerCamera : MonoBehaviour
 	private float yRotationV;
 	public float lookSmoothDamp=.1f;
 
+	private float timeSinceLatestFPSCount = 0f;
+	private int framesCounted = 0;
+	private int frames = 0;
+
 	void Start()
 	{
-		player = transform.parent;
+		character = Character.Instance;
 		switch(PlayerPrefs.GetInt("gameMode"))
 		{
 			case 0 : // Only standard player
@@ -29,6 +35,8 @@ public class PlayerCamera : MonoBehaviour
 				GetComponent<Camera>().rect = new Rect(0f,0f,0.5f,1f);
 				break;
 		}
+
+		timeSinceLatestFPSCount = Time.realtimeSinceStartup;
 	}
 
 	void FixedUpdate() 
@@ -42,7 +50,24 @@ public class PlayerCamera : MonoBehaviour
 		currentYRotation = Mathf.SmoothDamp (currentYRotation, yRotation,ref yRotationV, lookSmoothDamp);
 
 		transform.rotation = Quaternion.Euler (currentXRotation, currentYRotation, 0);
-		player.transform.rotation = Quaternion.Euler(0.0f, currentYRotation, 0.0f);
+		character.transform.rotation = Quaternion.Euler(0.0f, currentYRotation, 0.0f);
+	}
 
+	void Update()
+	{
+		++frames;
+		if(Time.realtimeSinceStartup - timeSinceLatestFPSCount >= 1f)
+		{
+			timeSinceLatestFPSCount = Time.realtimeSinceStartup;
+			framesCounted = frames;
+			frames = 0;
+		}
+	}
+
+	void OnGUI()
+	{
+		GUI.Label(new Rect (25, 25, 200, 20), "Framerate\t\t\t: "+framesCounted+" FPS");
+		GUI.Label(new Rect (25, 45, 200, 20), "Crystal Health\t: "+crystal.health);
+		GUI.Label(new Rect (25, 65, 200, 20), "Money\t\t\t\t: "+character.money);
 	}
 }

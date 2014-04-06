@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 ///  Class "WayPoint" initializes the structure representing a transit point for enemies.
 /// </summary>
-public class WayPoint : MonoBehaviour {
+public class WayPoint {
 
 	public int[] tabNodes;
 
