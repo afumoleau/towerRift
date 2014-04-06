@@ -43,9 +43,12 @@ public class EnemyManager : Singleton<EnemyManager>
 		way = new int[maxOfWayPoint];
 		
 		GameObject pathGO = GameObject.Find ("Path");
-		path = (Transform) pathGO.GetComponent("Transform");
-		listOfComponents = new Transform[65];
-		listOfComponents = path.GetComponentsInChildren (typeof(Transform));
+		if(pathGO != null)
+		{
+			path = (Transform) pathGO.GetComponent("Transform");
+			listOfComponents = new Transform[65];
+			listOfComponents = path.GetComponentsInChildren (typeof(Transform));
+		}
 	}
 
 	/// <summary>
@@ -148,6 +151,8 @@ public class EnemyManager : Singleton<EnemyManager>
 	/// <param name=n>The number of the checkpoint.</param>
 	/// <returns>The component which his number is passed as a parameter.</returns>
 	public static Transform getWayTransform (int n){
+		if(listOfComponents == null)
+			return null;
 		return listOfComponents[findIndexWayPoint(n)].transform;
 	}
 
@@ -169,9 +174,12 @@ public class EnemyManager : Singleton<EnemyManager>
 	/// <returns>The index of the checkpoint in the table of checkpoints.</returns>
 	private static int findIndexWayPoint (int n) {
 		string str = string.Concat("Waypoint", n.ToString());
-		for (int i = 1; i < 66; ++i) {
-			if (listOfComponents[i].name == str)
-				return i;
+		if(listOfComponents != null)
+		{
+			for (int i = 1; i < 66; ++i) {
+				if (listOfComponents[i].name == str)
+					return i;
+			}
 		}
 		Debug.Log ("Error : WayPoint not found");
 		return -1;

@@ -22,9 +22,15 @@ public class Bullet : MonoBehaviour
 			if(destination != null)
 			{
 				if(destination.GetComponent<Crystal>())
+				{
+					Destroy(gameObject);
 					destination.GetComponent<Crystal>().hit(10f);
+				}
 				if(destination.GetComponent<Enemy>())
+				{	
+					Destroy(gameObject);
 					destination.GetComponent<Enemy>().hit();
+				}
 			}
 
 			Destroy(gameObject);
