@@ -3,16 +3,14 @@ using System.Collections;
 
 public class Crystal : MonoBehaviour 
 {
-
 	public float health;
-
-	private const float maxHealth = 1000.0f;
+	public float maxHealth = 100f;
 	private bool stop = false;
 	public AudioClip gameOverClip;
 
 	void Start () 
 	{
-		health = 100f;
+		health = maxHealth;
 	}
 
 	void Update()

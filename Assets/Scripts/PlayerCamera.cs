@@ -15,10 +15,13 @@ public class PlayerCamera : MonoBehaviour
 	private float xRotationV;
 	private float yRotationV;
 	public float lookSmoothDamp=.1f;
+	public Texture2D barHealth;
+	public Texture2D supBarHealth;
 
 	private float timeSinceLatestFPSCount = 0f;
 	private int framesCounted = 0;
 	private int frames = 0;
+
 
 	void Start()
 	{
@@ -67,7 +70,11 @@ public class PlayerCamera : MonoBehaviour
 	void OnGUI()
 	{
 		GUI.Label(new Rect (25, 25, 200, 20), "Framerate\t\t\t: "+framesCounted+" FPS");
-		GUI.Label(new Rect (25, 45, 200, 20), "Crystal Health\t: "+crystal.health);
+
+		//GUI.Label(new Rect (25, 45, 200, 20), "Crystal Health\t: "+crystal.health);
+		GUI.DrawTexture(new Rect(25, 45, barHealth.width * crystal.health / crystal.maxHealth, barHealth.height), barHealth);
+		GUI.DrawTexture(new Rect(25, 45, supBarHealth.width, barHealth.height), supBarHealth);
+
 		GUI.Label(new Rect (25, 65, 200, 20), "Money\t\t\t\t: "+character.money);
 	}
 }
