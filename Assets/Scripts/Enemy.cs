@@ -2,7 +2,7 @@
 using System.Collections;
 
 /// <summary>
-///  Class "Enemy" manages interactions enemies (Attacks crystal and travels on the map)
+/// Manages the behaviour of enemies.
 /// </summary>
 public class Enemy : MonoBehaviour
 {
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 	private Character character;
 
 	/// <summary>
-	/// Function that allows to retrieve the Crystal component.
+	/// Initializes referenced objects.
 	/// </summary>
 	void Start ()
 	{
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that allows to manage the behavior of enemies. If the enemies are near the crystal then they will be shooting.
+	/// Called each frame. Shoot at the crystal when in range
 	/// </summary>
 	void Update ()
 	{
@@ -46,8 +46,11 @@ public class Enemy : MonoBehaviour
 		{
 			if(Vector3.Distance(transform.position, crystal.transform.position) <= range)
 			{
+				// Stop moving
 				NavMeshAgent nma = GetComponent<NavMeshAgent>();
 				nma.enabled = false;
+
+				// Create a new bullet
 				Transform newBullet = Instantiate(bulletPrefab) as Transform;
 				newBullet.parent = transform.parent;
 				newBullet.position = transform.position;
@@ -58,40 +61,44 @@ public class Enemy : MonoBehaviour
 
 		}
 
-		if (changeWay == true) {
+		if (changeWay == true)
+		{
 			currentWayPoint = way[index];
 			destinationWayPoint = way[index + 1];
 			index += 1;
 			
 			this.GetComponent<NavMeshAgent> ().SetDestination (EnemyManager.getWayTransform (destinationWayPoint).position);
 			changeWay = false;
-		} else if (EnemyManager.getWayTransform (destinationWayPoint) != null &&
+		}
+		else if (EnemyManager.getWayTransform (destinationWayPoint) != null &&
 					Mathf.Abs (this.GetComponent<NavMeshAgent> ().nextPosition.x - (EnemyManager.getWayTransform (destinationWayPoint)).position.x) < 5
 		           && Mathf.Abs(this.GetComponent<NavMeshAgent> ().nextPosition.z - (EnemyManager.getWayTransform (destinationWayPoint)).position.z) < 5
-		           && destinationWayPoint != 65) {
+		           && destinationWayPoint != 65)
+		{
 			changeWay = true;
 		}
 	}
 
 	/// <summary>
-	/// Function that calculates a random path to the enemy waves.
+	/// Set a random path.
 	/// </summary>
-	/// <param name=wayRandom>The random way to initialize.</param>
-	public void initializeWay(int[] wayRandom) {
-		way = new int[wayRandom.Length];
-		for (int i = 0; i < wayRandom.Length; i++) {
-			way[i] = wayRandom[i];
+	/// <param name=randomWay>The random way to set as enemy way.</param>
+	public void initializeWay(int[] randomWay)
+	{
+		way = new int[randomWay.Length];
+		for (int i = 0; i < randomWay.Length; i++)
+		{
+			way[i] = randomWay[i];
 		}
 		changeWay = true;
 	}
 
 	/// <summary>
-	/// 
+	/// Called when the enemy is hit by a bullet
 	/// </summary>
 	public void hit()
 	{
 		curHealth--;
-		//healthBarLength = healthBarLength * (curHealth /(float)maxHealth);
 		if(curHealth <= 0)
 		{
 				this.curHealth = 0;

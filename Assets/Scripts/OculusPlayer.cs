@@ -2,7 +2,7 @@
 using System.Collections;
 
 /// <summary>
-///  Class "OculusPlayer"
+///  This behaviour is used by the oculus player
 /// </summary>
 public class OculusPlayer : MonoBehaviour
 {
@@ -20,6 +20,9 @@ public class OculusPlayer : MonoBehaviour
 	private HintManager hintManager;
 	private Transform manipulatedObject;
 
+	/// <summary>
+	/// Initialisez the Oculus Player's camera
+	/// </summary>
 	void Start ()
 	{
 		hintManager = HintManager.Instance;
@@ -42,6 +45,9 @@ public class OculusPlayer : MonoBehaviour
 		manipulatedObject = null;
 	}
 
+	/// <summary>
+	/// Called each frame and manages cube manipulation
+	/// </summary>
 	void Update()
 	{
 		Vector3 rayOrigin = cursorCamera.position;

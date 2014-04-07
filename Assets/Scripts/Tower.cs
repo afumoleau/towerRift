@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Manages the behaviour of defense towers
+/// </summary>
 public class Tower : MonoBehaviour
 {
 	public float reloadTime = 0.5f;
@@ -13,6 +16,9 @@ public class Tower : MonoBehaviour
 	{
 	}
 	
+	/// <summary>
+	/// Called each frame to shoot at enemies in range
+	/// </summary>
 	void Update ()
 	{
 		clock += Time.deltaTime;

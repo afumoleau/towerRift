@@ -2312,7 +2312,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: ed98943886432664b93fed11f70f8a81, type: 2}
       propertyPath: m_Name
-      value: Player
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: ed98943886432664b93fed11f70f8a81, type: 2}
       propertyPath: crystal
@@ -7421,6 +7421,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 400000, guid: 64aa795ee53590844a418d831959405a, type: 2}
   towerBasePrefab: {fileID: 400000, guid: 366559e99f3ecb7488f55e59ca9272e2, type: 2}
   towerCubePrefab: {fileID: 400000, guid: f83bd4c0720e6dc4190f024f51923970, type: 2}
+  towerCubeSpawnRange: 25
 --- !u!4 &777729929
 Transform:
   m_ObjectHideFlags: 0
@@ -11840,7 +11841,7 @@ GameObject:
   - 81: {fileID: 1503407065}
   - 82: {fileID: 1503407067}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

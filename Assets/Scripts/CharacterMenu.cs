@@ -67,7 +67,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Draws the graph of FPS.
+	/// Draws the framerate graph.
 	/// </summary>
 	void OnPostRender() 
 	{
@@ -92,7 +92,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Computes the graph FPS.
+	/// Computes the framerate graph.
 	/// </summary>
 	void ScrollFPS() 
 	{
@@ -222,7 +222,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that changes the graphics quality of the game.
+	/// Changes the graphics quality of the game.
 	/// </summary>
 	void Qualities() 
 	{
@@ -251,7 +251,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that allows to display two clickable buttons that increase / decrease the graphics quality of the game.
+	/// Displays two clickable buttons that increase / decrease the graphics quality of the game.
 	/// </summary>
 	void QualityControl() 
 	{
@@ -268,7 +268,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that displays a slider for Controlling the audio volume of the game
+	/// Displays a slider for controlling the audio volume of the game
 	/// </summary>
 	void VolumeControl() 
 	{
@@ -290,7 +290,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that calculates the FPS.
+	/// Computes the framerate.
 	/// </summary>
 	void FPSUpdate() 
 	{
@@ -302,7 +302,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that displays the FPS, the number of triangles, the number of vertices and the graph of FPS.
+	/// Displays the framerate, the number of triangles, the number of vertices and the framerate graph.
 	/// </summary>
 	void ShowStatNums() 
 	{
@@ -330,7 +330,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that calculates the location of the menu page.
+	/// Computes the location of the menu page.
 	/// </summary>
 	/// <param name=width>Width of the page</param>
 	/// <param name=height>Height of the page</param>
@@ -340,7 +340,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that displays the back button in the menu if needed.
+	/// Displays the back button in the menu if needed.
 	/// </summary>
 	void EndPage() 
 	{
@@ -352,7 +352,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that checks if it's the beginning of the game or not.
+	/// Checks if it's the beginning of the game or not.
 	/// </summary>
 	/// <returns>Return "true" if it's the beginnig of the game, "false" otherwise.</returns>
 	bool IsBeginning() 
@@ -410,7 +410,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that calculates the number of triangles and vertices in the 3D world.
+	/// Computes the number of triangles and vertices in the 3D world.
 	/// </summary>
 	/// <param name=></param>
 	void GetObjectStats(GameObject obj) 
@@ -426,7 +426,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that pauses the game.
+	/// Pauses the game.
 	/// </summary>
 	void PauseGame() 
 	{
@@ -438,7 +438,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that unpauses the game.
+	/// Unpauses the game.
 	/// </summary>
 	void UnPauseGame() 
 	{
@@ -454,7 +454,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that restart the game.
+	/// Restart the game.
 	/// </summary>
 	public void RestartGame() 
 	{
@@ -463,7 +463,7 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that quit the game.
+	/// Quit the game.
 	/// </summary>
 	void QuitGame() 
 	{
@@ -471,16 +471,15 @@ public class CharacterMenu : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Function that checks if the game is paused.
+	/// Returns whether the game is paused.
 	/// </summary>
-	/// <returns>Return "true" if the game is paused, "false" otherwise.</returns>
 	bool IsGamePaused() 
 	{
 		return (Time.timeScale == 0);
 	}
 
 	/// <summary>
-	/// Function that pauses the sound if the game is paused.
+	/// Pauses the sound if the game is paused.
 	/// </summary>
 	void OnApplicationPause(bool pause) 
 	{

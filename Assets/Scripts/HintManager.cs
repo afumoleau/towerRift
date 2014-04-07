@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Manages the hints given by the Oculus player
+/// </summary>
 public class HintManager : Singleton<HintManager>
 {
 	protected HintManager(){}
@@ -11,6 +14,9 @@ public class HintManager : Singleton<HintManager>
 	public Vector3 pathEnd;
 	private const float radius = 10.0f;
 
+	/// <summary>
+	/// Initializes the references to components
+	/// </summary>
 	void Start ()
 	{
 		navMeshPath = new NavMeshPath();
@@ -18,6 +24,9 @@ public class HintManager : Singleton<HintManager>
 		line.enabled = false;
 	}
 	
+	/// <summary>
+	/// Called each frame and refresh the path hint if needed
+	/// </summary>
 	void Update ()
 	{
 		LineRenderer line = GetComponent<LineRenderer>();
@@ -39,6 +48,9 @@ public class HintManager : Singleton<HintManager>
 		}
 	}
 
+	/// <summary>
+	/// Creates a pin the game, hinting a specific position
+	/// </summary>
 	public void pin(Vector3 position)
 	{
 		Transform newPin = Instantiate(spawn) as Transform;
@@ -54,6 +66,10 @@ public class HintManager : Singleton<HintManager>
 		Destroy(newPin.gameObject, 1);
 	}
 
+	/// <summary>
+	/// Draws a path hint
+	/// </summary>
+	/// <param name=points>An array of points defining the path to be drawn.</param>
 	void DrawPath(Vector3[] points)
 	{
 		LineRenderer line = GetComponent<LineRenderer>();

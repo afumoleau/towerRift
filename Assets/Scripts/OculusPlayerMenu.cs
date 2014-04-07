@@ -2,10 +2,10 @@
 using System.Collections;
 
 /// <summary>
-///  Class "MenuPlayer" displays the main menu of the player with the Oculus Rift & Kinect.
+///  Used to display a 3D menu for the oculus player
 /// </summary>
-public class OculusPlayerMenu : MonoBehaviour {
-
+public class OculusPlayerMenu : MonoBehaviour
+{
 	public GameObject head;
 	public GameObject left_hand;
 	public GameObject right_hand;
@@ -29,24 +29,28 @@ public class OculusPlayerMenu : MonoBehaviour {
 	/// <summary>
 	/// Main loop that handles the events to launch the menu with the kinect.
 	/// </summary>
-	void Update () {
+	void Update () 
+	{
 		timer += Time.fixedDeltaTime;
 		ActionDisplayMenu ();
 		if (stop)
-			ActionInMenu ();
+		ActionInMenu ();
 	}
 
 	/// <summary>
 	/// Function that displays the next menu or not if the left hand is in the air or not.
 	/// </summary>
-	void ActionDisplayMenu () {
-		if (left_hand.transform.position.y > head.transform.position.y && stop == false) {
+	void ActionDisplayMenu () 
+	{
+		if (left_hand.transform.position.y > head.transform.position.y && stop == false) 
+		{
 			Debug.Log ("Main gauche au dessus !");
 			Time.timeScale = 0;
 			menuInGame.SetActive(true);
 			stop = true;
 		}
-		else if (left_hand.transform.position.y < head.transform.position.y && stop == true ) {
+		else if (left_hand.transform.position.y < head.transform.position.y && stop == true ) 
+		{
 			Debug.Log ("Main gauche en dessous !");
 			Time.timeScale = 1;
 			menuInGame.SetActive(false);
@@ -58,53 +62,63 @@ public class OculusPlayerMenu : MonoBehaviour {
 	/// <summary>
 	/// Function that prints and applies a selection of menu buttons with the right hand.
 	/// </summary>
-	void ActionInMenu () { 
+	void ActionInMenu ()
+	{ 
 		myResume = GameObject.Find("Resume");
 		myRestart = GameObject.Find("Restart");
 		myExit = GameObject.Find("Exit");
 
 		localHeightMenu = head.transform.position.y + heightMenu;
 
-		if ((right_hand.transform.position.y > localHeightMenu - distanceButtons) && select != 1) {
+		if ((right_hand.transform.position.y > localHeightMenu - distanceButtons) && select != 1) 
+		{
 			myResume.renderer.material = on;
 			myRestart.renderer.material = off;
 			myExit.renderer.material = off;
 			select = 1;
 			timeOk = timer;
-		} else if ((right_hand.transform.position.y > localHeightMenu - 2 * distanceButtons) && (right_hand.transform.position.y < (localHeightMenu - distanceButtons)) && select != 2) {
+		}
+		else if ((right_hand.transform.position.y > localHeightMenu - 2 * distanceButtons) && (right_hand.transform.position.y < (localHeightMenu - distanceButtons)) && select != 2) 
+		{
 			myResume.renderer.material = off;
 			myRestart.renderer.material = on;
 			myExit.renderer.material = off;
 			select = 2;
 			timeOk = timer;
-		} else if ((right_hand.transform.position.y > localHeightMenu - 3 * distanceButtons) && (right_hand.transform.position.y < localHeightMenu - 2 * distanceButtons) && select != 3) {
+		} 
+		else if ((right_hand.transform.position.y > localHeightMenu - 3 * distanceButtons) && (right_hand.transform.position.y < localHeightMenu - 2 * distanceButtons) && select != 3) 
+		{
 			myResume.renderer.material = off;
 			myRestart.renderer.material = off;
 			myExit.renderer.material = on;
 			select = 3;
 			timeOk = timer;
-		} else if ((right_hand.transform.position.y < localHeightMenu - 3 * distanceButtons) && select != 0) {
+		}
+		else if ((right_hand.transform.position.y < localHeightMenu - 3 * distanceButtons) && select != 0) 
+		{
 			myResume.renderer.material = off;
 			myRestart.renderer.material = off;
 			myExit.renderer.material = off;
 			select = 0;
 		}
 
-		if ((timer > timeOk + time) && select != 0) {
+		if ((timer > timeOk + time) && select != 0) 
+		{
 			float timeDisplay = timeOk + time;
-			switch (select) {
+			switch (select) 
+			{
 				case 1:
-					menuInGame.SetActive(false);
-					Time.timeScale = 1;
-					break;
+				menuInGame.SetActive(false);
+				Time.timeScale = 1;
+				break;
 				case 2:
-					menuInGame.SetActive(false);
-					Application.LoadLevel("scene2");
-					Time.timeScale = 1;
-					break;
+				menuInGame.SetActive(false);
+				Application.LoadLevel("scene2");
+				Time.timeScale = 1;
+				break;
 				case 3:
-					Application.Quit();
-					break;
+				Application.Quit();
+				break;
 			}
 		}
 	}

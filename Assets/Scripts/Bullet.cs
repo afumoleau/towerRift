@@ -13,7 +13,10 @@ public class Bullet : MonoBehaviour
 	{
 	}
 	
-	void Update ()
+	/// <summary>
+	/// Called each frame, move to the destination
+	/// </summary>
+	void Update()
 	{
 		clock += Time.deltaTime;
 

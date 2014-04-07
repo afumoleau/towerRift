@@ -1,17 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Display a menu at the start of the game
+/// </summary>
 public class StartMenu : MonoBehaviour
 {
+	/// <summary>
+	/// Set the window resolution
+	/// </summary>
+	/// <param name=position>The position of the tower base to be created (Y coordinates is ignored).</param>
 	void Start ()
 	{
-		Screen.SetResolution(640,480, false);
+		Screen.SetResolution(640, 480, false);
 	}
 	
 	void Update ()
 	{
 	}
 
+	/// <summary>
+	/// Draw the menu GUI
+	/// </summary>
 	void OnGUI ()
 	{
 		float buttonWidth = 300;

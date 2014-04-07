@@ -8,6 +8,9 @@ public class Crystal : MonoBehaviour
 	private bool stop = false;
 	public AudioClip gameOverClip;
 
+	/// <summary>
+	/// Initializes health
+	/// </summary>
 	void Start () 
 	{
 		health = maxHealth;
@@ -17,6 +20,9 @@ public class Crystal : MonoBehaviour
 	{
 	}
 
+	/// <summary>
+	/// Called when the crystal is hit by a bullet
+	/// </summary>
 	public void hit(float damage)
 	{
 		health -= damage;
@@ -31,6 +37,9 @@ public class Crystal : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Coroutine called when the crystal is destroyed, play a sound and reload level.
+	/// </summary>
 	IEnumerator endGame()	
 	{
 		audio.PlayOneShot(gameOverClip);
@@ -39,29 +48,3 @@ public class Crystal : MonoBehaviour
 		Application.LoadLevel("Game");
 	}
 }
-
-/*
-using UnityEngine;
-using System.Collections;
-
-public class BarCrystalHealth : MonoBehaviour {
-
-	Vector2 pos=new Vector2(20,40);
-	Vector2 size=new Vector2(80,20);
-	
-	public Texture2D supBarHealth;
-	public Texture2D barHealth;
-
-	private float lifeLeft;
-
-	void Update () {
-		lifeLeft = GameObject.Find("Crystal").GetComponent<health>().health ;
-	}
-	
-	void OnGUI()
-	{
-		GUI.DrawTexture(new Rect(10, 20, barHealth.width * lifeLeft / 100, barHealth.height), barHealth);
-		GUI.DrawTexture(new Rect(10, 20, supBarHealth.width, barHealth.height), supBarHealth);
-	}
-}
-*/

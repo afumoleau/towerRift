@@ -21,6 +21,9 @@ public class Character : Singleton<Character>
 	private Vector3 startPos;
 	private Vector3 endPos;
 
+	/// <summary>
+	/// Initializes referenced objects.
+	/// </summary>
 	void Start()
 	{
 		towerManager = TowerManager.Instance;
@@ -28,6 +31,9 @@ public class Character : Singleton<Character>
 		camera = transform.Find("Camera").GetComponent<Camera>();
 	}
 	
+	/// <summary>
+	/// Called each frame. Move the chracter, spawn tower base or interact with objects if needed
+	/// </summary>
 	void Update()
 	{
 		KeyboardMove();
@@ -42,6 +48,9 @@ public class Character : Singleton<Character>
 			interact();
 	}
 
+	/// <summary>
+	/// Moves the player from keyboard input
+	/// </summary>
 	void KeyboardMove()
 	{
 		Vector3 moveVector = Vector3.zero;
@@ -52,6 +61,9 @@ public class Character : Singleton<Character>
 		controller.Move(moveVector.normalized * speed * Time.deltaTime);
 	}
 
+	/// <summary>
+	/// Spawn a tower base
+	/// </summary>
 	void spawnTowerBase()
 	{
 		// Cast a ray from the center of the viewport
@@ -66,6 +78,9 @@ public class Character : Singleton<Character>
 		}
 	}
 
+	/// <summary>
+	/// Interact with a gameObject pointed by the camera's center
+	/// </summary>
 	void interact()
 	{
 		Ray cameraRay = camera.ScreenPointToRay(new Vector3((camera.rect.x + camera.rect.width / 2f) * Screen.width, (camera.rect.y + camera.rect.height / 2f) * Screen.height, 0f));
@@ -95,21 +110,29 @@ public class Character : Singleton<Character>
 		}
 	}
 
-	IEnumerator manipulateObject(Transform thisTransform) 
+	/// <summary>
+	/// Manipulate an object, mainly used for debug purpose
+	/// </summary>
+	/// <param name=o>object to manipulate.</param>
+	IEnumerator manipulateObject(Transform o)
 	{
 		double i= 0.0;
 		double rate = 0.5;
 		while (i < 1.0) 
 		{
 			i += Time.deltaTime * rate;
-			thisTransform.position = Vector3.Lerp(startPos, endPos, ((float) i)* speed); 
+			o.position = Vector3.Lerp(startPos, endPos, ((float) i)* speed); 
 			yield return new WaitForEndOfFrame();
 		}
 	}
 
-	IEnumerator shoot(Transform thisTransform) 
+	/// <summary>
+	/// Play a sound as a result of shooting an enemy
+	/// </summary>
+	/// <param name=o>object to manipulate.</param>
+	IEnumerator shoot(Transform o) 
 	{
 		yield return new WaitForSeconds(1.0f);
-		GameObject.Destroy(thisTransform.gameObject);
+		GameObject.Destroy(o.gameObject);
 	}
 }

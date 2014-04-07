@@ -4,7 +4,8 @@ using System.Collections;
 /// <summary>
 ///  Class "Way" initializes all possible paths on the map for enemies in a table structure.
 /// </summary>
-public class Way {
+public class Way
+{
 	
 	public WayPoint[] waysOfWayPoints;
 	private Transform[] listOfTransforms;
@@ -20,7 +21,8 @@ public class Way {
 		waysOfWayPoints = new WayPoint[65];
 		pathComp = new Transform[65];
 
-		for (int i = 0; i < 65; ++i) {
+		for (int i = 0; i < 65; ++i)
+		{
 			waysOfWayPoints [i] = new WayPoint();
 		}
 
@@ -28,9 +30,10 @@ public class Way {
 	}
 
 	/// <summary>
-	/// Function that initializes the tree of ways.
+	/// Initializes the tree of ways.
 	/// </summary>
-	void initializeWay () {
+	void initializeWay ()
+	{
 		setWay(1, 12, 2);
 		setWay(2, 14, 0);
 		setWay(3, 15, 0);
@@ -67,28 +70,31 @@ public class Way {
 	}
 
 	/// <summary>
-	/// Function that gives the number of checkpoint at the index given. 
+	/// Returns the number of checkpoint at the index given. 
 	/// </summary>
 	/// <param name=n>The index in the table of checkpoints.</param>
 	/// <returns>The number of checkpoints.</returns>
-	public int getNumWayPoint (int n) {
+	public int getNumWayPoint (int n)
+	{
 		return waysOfWayPoints[n].tabNodes[0];
 	}
 
 	/// <summary>
-	/// Function that setting a way on the map.
+	/// Set a way on the map.
 	/// </summary>
-	/// <param name=></param>
-	/// <param name=></param>
-	/// <param name=></param>
-	public void setWay(int node, int node1, int node2) {
+	/// <param name=node>The current node.</param>
+	/// <param name=node1>The first destination node.</param>
+	/// <param name=node2>The second destination node.</param>
+	public void setWay(int node, int node1, int node2)
+	{
 		waysOfWayPoints [node - 1].setWayPoint (node, node1, node2);
 	}
 
 	/// <summary>
-	/// Function that displays all possible ways. It's used for debugging.
+	/// Displays all possible ways. It's used for debugging.
 	/// </summary>
-	public void displayWay () {
+	public void displayWay ()
+	{
 		for (int i = 0; i < 65; i++) {
 			Debug.Log (i + " : " + waysOfWayPoints[i].tabNodes[0] + " " + waysOfWayPoints[i].tabNodes[1] + " " + waysOfWayPoints[i].tabNodes[2]);
 		}

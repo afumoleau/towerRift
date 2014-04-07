@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerCamera : MonoBehaviour
+/// <summary>
+///  Manages the camera of the character
+/// </summary>
+public class CharacterCamera : MonoBehaviour
 {
 	private Character character;
 	public Crystal crystal;
 
-	//adapt mouse movement with camera movement in 3D.
 	public float sensitivity=5f;
 	private float xRotation;
 	private float yRotation;
@@ -22,7 +24,9 @@ public class PlayerCamera : MonoBehaviour
 	private int framesCounted = 0;
 	private int frames = 0;
 
-
+	/// <summary>
+	/// Initializes the character's camera
+	/// </summary>
 	void Start()
 	{
 		character = Character.Instance;
@@ -42,6 +46,9 @@ public class PlayerCamera : MonoBehaviour
 		timeSinceLatestFPSCount = Time.realtimeSinceStartup;
 	}
 
+	/// <summary>
+	/// Called each frame to make the camera follow the mouse cursor
+	/// </summary>
 	void FixedUpdate() 
 	{
 		xRotation -= Input.GetAxis ("Mouse Y") * sensitivity;
@@ -56,6 +63,9 @@ public class PlayerCamera : MonoBehaviour
 		character.transform.rotation = Quaternion.Euler(0.0f, currentYRotation, 0.0f);
 	}
 
+	/// <summary>
+	/// Called each frame to count the framerate
+	/// </summary>
 	void Update()
 	{
 		++frames;
@@ -67,6 +77,9 @@ public class PlayerCamera : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Displays character's Head-Up Display
+	/// </summary>
 	void OnGUI()
 	{
 		GUI.Label(new Rect (25, 25, 200, 20), "Framerate\t\t\t: "+framesCounted+" FPS");

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Manages the behaviour of tower bases
+/// </summary>
 public class TowerBase : MonoBehaviour
 {
 	public int cubesCount = 0;
@@ -17,12 +20,20 @@ public class TowerBase : MonoBehaviour
 	{
 	}
 
+	/// <summary>
+	/// Called when an object enter the trigger
+	/// </summary>
+	/// <param name=collider>The collider which entered the trigger.</param>
 	void OnTriggerEnter(Collider collider)
 	{
 		if(collider.gameObject.CompareTag("towerCube"))
 			addCube(collider.transform);
 	}
 
+	/// <summary>
+	/// Add a cube to the tower base
+	/// </summary>
+	/// <param name=towerCube>The cube to add.</param>
 	public void addCube(Transform towerCube)
 	{
 		towerCube.parent = transform;

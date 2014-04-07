@@ -2,7 +2,7 @@
 using System.Collections;
 
 /// <summary>
-///  Class "EnemyManager" initializes the waves enemies and their respective paths from random spawns.
+/// Manages enemies and their waves.
 /// </summary>
 public class EnemyManager : Singleton<EnemyManager>
 {

@@ -1119,6 +1119,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 400000, guid: 64aa795ee53590844a418d831959405a, type: 2}
   towerBasePrefab: {fileID: 400000, guid: 366559e99f3ecb7488f55e59ca9272e2, type: 2}
   towerCubePrefab: {fileID: 400000, guid: f83bd4c0720e6dc4190f024f51923970, type: 2}
+  towerCubeSpawnRange: 25
 --- !u!1 &336431544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &414777726
 Transform:
   m_ObjectHideFlags: 2
