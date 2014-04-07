@@ -7296,6 +7296,7 @@ MonoBehaviour:
   leftCamera: {fileID: 1412725165}
   rightCamera: {fileID: 1099154325}
   ground: {fileID: 812944444}
+  oculusRift: {fileID: 670834719}
 --- !u!114 &770259902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9922,6 +9923,10 @@ Prefab:
       propertyPath: ground
       value: 
       objectReference: {fileID: 812944444}
+    - target: {fileID: 11400006, guid: e4f4f34f78fa91a439f8d4c389ffc6c2, type: 2}
+      propertyPath: oculusRift
+      value: 
+      objectReference: {fileID: 670834719}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4f4f34f78fa91a439f8d4c389ffc6c2, type: 2}
   m_RootGameObject: {fileID: 770259897}

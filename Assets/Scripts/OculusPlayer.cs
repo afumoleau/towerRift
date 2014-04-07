@@ -14,6 +14,7 @@ public class OculusPlayer : MonoBehaviour
 	public Camera leftCamera;
 	public Camera rightCamera;
 	public Collider ground;
+	public GameObject oculusRift;
 
 	private TowerManager towerManager;
 	private HintManager hintManager;
@@ -27,7 +28,7 @@ public class OculusPlayer : MonoBehaviour
 		switch(PlayerPrefs.GetInt("gameMode"))
 		{
 			case 0 : // Only standard player
-				gameObject.SetActive(false);
+				oculusRift.SetActive(false);
 				break;
 			case 1 : // Only Rift player
 				leftCamera.rect = new Rect(0f, 0f, 0.5f, 1f);
@@ -41,13 +42,14 @@ public class OculusPlayer : MonoBehaviour
 		manipulatedObject = null;
 	}
 
-	void Update ()
+	void Update()
 	{
 		Vector3 rayOrigin = cursorCamera.position;
 		Vector3 rayDirection = Vector3.Normalize(rightHand.position - rayOrigin);
 
 		Ray ray = new Ray(rayOrigin, rayDirection);
 		RaycastHit hit;
+		Debug.DrawRay(rayOrigin, rayDirection);
 		if (Physics.Raycast(ray, out hit))
 		{
 			if(hit.collider.gameObject.CompareTag("Grid"))
